@@ -1,23 +1,119 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Open books — Fables of a Failed Founder</title>
-<meta name="description" content="Live, machine-generated numbers from a one-person AI-run company going €0→€10k/mo in public.">
-<style>
- body{margin:0;background:#0d1117;color:#e6edf3;font:16px/1.6 -apple-system,'Segoe UI',Inter,sans-serif}
- main{max-width:880px;margin:0 auto;padding:48px 20px}
- h1{font-size:1.9rem;margin:0 0 4px} .tag{color:#7d8590;margin:0 0 36px}
- .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
- .card{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:22px}
- .v{font-size:2.1rem;font-weight:700} .l{color:#7d8590;margin-top:2px}
- .s{color:#3fb950;font-size:.85rem;margin-top:6px}
- footer{margin-top:44px;color:#7d8590;font-size:.85rem;border-top:1px solid #21262d;padding-top:18px}
- a{color:#58a6ff;text-decoration:none}
-</style></head><body><main>
-<h1>Fables of a Failed Founder — open books</h1>
-<p class="tag">Week 1 of building a one-person company, operated by AI agents,
-from €0 to €10,000/mo — every number public, updated hourly by the machine itself.</p>
-<div class="grid"><div class="card"><div class="v">€0</div><div class="l">MRR</div><div class="s">goal: €10,000/mo</div></div><div class="card"><div class="v">0</div><div class="l">email subscribers</div></div><div class="card"><div class="v">0</div><div class="l">essays published</div></div><div class="card"><div class="v">350</div><div class="l">cold emails sent</div><div class="s">+177 this week</div></div><div class="card"><div class="v">0</div><div class="l">replies</div></div><div class="card"><div class="v">€1</div><div class="l">AI spend, all time</div><div class="s">€0.05 this week</div></div></div>
-<footer>Auto-generated 2026-07-18 09:36 UTC · no hand-edited numbers ·
-run by Dayo Omisakin, Turku, Finland ·
-<a href="https://mishakingstrategies.com">Mishaking Strategies</a></footer>
-</main></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Open books — Fables of a Failed Founder</title><meta name="description" content="Live, machine-generated numbers from a one-person AI-run company going €0→€10k/mo in public — updated hourly, committed to a public repo, never hand-edited."><meta property="og:title" content="Open books — Fables of a Failed Founder"><meta property="og:description" content="A one-person company run by AI agents, going €0→€10k/mo with every number public."><style>
+:root{
+  --bg:#0a0a0b; --plane:#0f0f11; --surface:#141417; --surface-2:#1a1a1e;
+  --border:rgba(255,255,255,.08); --border-strong:rgba(255,255,255,.14);
+  --ink:#f4f4f2; --ink-dim:#a6a6a0; --ink-mute:#6d6d68;
+  --accent:#f5b301; --accent-dim:#8a6a12;
+  --good:#3fb64f; --link:#7aa2ff;
+  --spark-line:#f5b301; --spark-g0:rgba(245,179,1,.28); --spark-g1:rgba(245,179,1,0);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:#0a0a0b}
+main{max-width:960px;margin:0 auto;padding:clamp(28px,6vw,72px) 20px 80px}
+a{color:var(--link);text-decoration:none;border-bottom:1px solid rgba(122,162,255,.25)}
+a:hover{border-bottom-color:var(--link)}
+
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);
+  font-weight:600;margin:0 0 18px}
+.eyebrow .live{width:7px;height:7px;border-radius:50%;background:var(--good);
+  box-shadow:0 0 0 0 rgba(63,182,79,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,182,79,.5)}
+  70%{box-shadow:0 0 0 7px rgba(63,182,79,0)}100%{box-shadow:0 0 0 0 rgba(63,182,79,0)}}
+
+h1{font-size:clamp(2rem,6.5vw,3.5rem);line-height:1.04;letter-spacing:-.02em;
+  font-weight:800;margin:0 0 20px}
+h1 .arrow{color:var(--accent)}
+h1 .mo{color:var(--ink-mute);font-weight:600;font-size:.5em;letter-spacing:0}
+.lede{font-size:clamp(1rem,2.4vw,1.18rem);color:var(--ink-dim);max-width:60ch;
+  margin:0 0 40px}
+.lede b{color:var(--ink);font-weight:600}
+
+/* headline MRR block */
+.mrr{background:linear-gradient(180deg,var(--surface) 0%,var(--plane) 100%);
+  border:1px solid var(--border);border-radius:18px;padding:clamp(22px,4vw,34px);
+  margin:0 0 44px;position:relative;overflow:hidden}
+.mrr::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 80% at 100% 0%,rgba(245,179,1,.10),transparent 60%)}
+.mrr .row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;
+  position:relative}
+.mrr .fig{font-size:clamp(3rem,11vw,5.2rem);font-weight:800;letter-spacing:-.03em;
+  line-height:1}
+.mrr .badge{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;
+  font-weight:600;letter-spacing:.02em;color:var(--accent);
+  background:rgba(245,179,1,.10);border:1px solid rgba(245,179,1,.28);
+  border-radius:999px;padding:6px 13px}
+.mrr .note{color:var(--ink-dim);font-size:.95rem;margin:14px 0 0;position:relative}
+.mrr .track{position:relative;height:8px;border-radius:6px;
+  background:var(--surface-2);border:1px solid var(--border);
+  margin:20px 0 8px;overflow:hidden}
+.mrr .fill{position:absolute;inset:0 auto 0 0;border-radius:6px;
+  background:linear-gradient(90deg,var(--accent-dim),var(--accent));
+  box-shadow:0 0 12px rgba(245,179,1,.4)}
+.mrr .scale{display:flex;justify-content:space-between;font-size:.78rem;
+  color:var(--ink-mute);position:relative}
+
+/* stat grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:14px;margin:0 0 44px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:20px 22px;display:flex;flex-direction:column;min-height:150px;
+  transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+.card .l{color:var(--ink-dim);font-size:.9rem;font-weight:500}
+.card .v{font-size:2.2rem;font-weight:800;letter-spacing:-.02em;margin:6px 0 2px}
+.card .s{font-size:.82rem;color:var(--ink-mute)}
+.card .s b{color:var(--good);font-weight:600}
+.card .spark-wrap{margin-top:auto;padding-top:14px}
+.spark{display:block;width:100%;height:34px}
+.sk-line{fill:none;stroke:var(--spark-line);stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.sk-dot{fill:var(--spark-line)}
+.sk-g0{stop-color:var(--spark-g0)}.sk-g1{stop-color:var(--spark-g1)}
+.sk-flat{stroke:var(--border-strong);stroke-width:1;stroke-dasharray:2 3;
+  vector-effect:non-scaling-stroke}
+.card .hint{font-size:.72rem;color:var(--ink-mute);margin-top:6px;opacity:.8}
+
+/* footer */
+footer{border-top:1px solid var(--border);padding-top:32px;margin-top:8px}
+footer h2{font-size:1.15rem;font-weight:700;margin:0 0 12px;letter-spacing:-.01em}
+footer p{color:var(--ink-dim);max-width:66ch;margin:0 0 14px;font-size:.95rem}
+footer .meta{color:var(--ink-mute);font-size:.82rem;margin-top:24px;line-height:1.9}
+.mono{font-variant-numeric:tabular-nums}
+
+@media (prefers-color-scheme:light){
+  :root{
+    --bg:#faf9f6; --plane:#ffffff; --surface:#ffffff; --surface-2:#f1efe9;
+    --border:rgba(11,11,11,.10); --border-strong:rgba(11,11,11,.18);
+    --ink:#141310; --ink-dim:#57544d; --ink-mute:#8a877f;
+    --accent:#b57e00; --accent-dim:#d9a520; --good:#0a8f2e; --link:#1c5cd6;
+    --spark-line:#b57e00; --spark-g0:rgba(181,126,0,.22); --spark-g1:rgba(181,126,0,0);
+  }
+  body{color:var(--ink)}
+  ::selection{background:var(--accent);color:#fff}
+}
+@media (max-width:540px){ .mrr .fig{font-size:16vw} }
+@media (prefers-reduced-motion:reduce){ .eyebrow .live{animation:none} }
+</style></head><body><main><div class="eyebrow"><span class="live"></span>Open books · updated hourly by the machine</div><h1>The €0 <span class="arrow">&rarr;</span> €10,000<span class="mo">/mo</span> challenge</h1><p class="lede">One person. A company <b>operated by AI agents</b>. Every number public — the wins, the &euro;0s, the spend — and none of it typed by hand. This is <b>week 1</b>.</p><div class="mrr"><div class="row"><div class="fig" data-count="0" data-pre="&euro;" data-dec="0">€0</div><span class="badge">day one — books open</span></div><p class="note">Zero revenue, shown on purpose. Most founders hide this number until it&#x27;s flattering. The whole point here is that you get to watch it move from nothing.</p><div class="track"><div class="fill" style="width:1.20%"></div></div><div class="scale"><span>&euro;0</span><span class="mono">&euro;10,000 / mo goal</span></div></div><div class="grid"><div class="card"><div class="l">Email subscribers</div><div class="v" data-count="0" data-pre="" data-suf="" data-dec="0">0</div><div class="s">people who asked to follow along</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div><div class="card"><div class="l">Essays published</div><div class="v" data-count="0" data-pre="" data-suf="" data-dec="0">0</div><div class="s">written in the open, receipts attached</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div><div class="card"><div class="l">Cold emails sent</div><div class="v" data-count="350" data-pre="" data-suf="" data-dec="0">350</div><div class="s"><b>+177</b> this week</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div><div class="card"><div class="l">Replies</div><div class="v" data-count="0" data-pre="" data-suf="" data-dec="0">0</div><div class="s">humans who wrote back</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div><div class="card"><div class="l">AI spend, all-time</div><div class="v" data-count="1.35849849968" data-pre="€" data-suf="" data-dec="0">€1</div><div class="s"><b>€0.05</b> this week</div><div class="hint">what it costs to have the agents run the company</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div><div class="card"><div class="l">Revenue</div><div class="v" data-count="0" data-pre="€" data-suf="" data-dec="0">€0</div><div class="s">not a cent yet — that's the story</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div></div><p style="color:var(--ink-mute);font-size:.82rem;margin:-28px 0 40px">Trend lines are flat until the next few hourly snapshots land — the history only started recording today, and nothing here is backfilled.</p><footer><h2>How this page works</h2><p>Nobody types these numbers. A script on a server reads the live databases every hour — the outreach logs, the subscriber count, the AI spend meter, the essays shipped — renders this exact page, and commits it to a public Git repository. No hand-editing, no rounding up, no quietly skipping a bad day.</p><p>Don't take my word for it: <a href="https://github.com/oroomi/open-books/commits/main">every hourly commit is timestamped in the open</a> — the machine's own paper trail is the proof the numbers aren't curated.</p><div class="meta">Generated 2026-07-18 09:42 UTC &middot; built &amp; run by Dayo Omisakin &middot; Turku, Finland &middot; <a href="https://mishakingstrategies.com">Mishaking Strategies</a></div></footer></main><script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var end=parseFloat(el.getAttribute('data-count'));
+    if(!isFinite(end)){return;}
+    var dec=parseInt(el.getAttribute('data-dec')||'0',10);
+    var pre=el.getAttribute('data-pre')||'', suf=el.getAttribute('data-suf')||'';
+    function fmt(v){return pre+v.toLocaleString('en-US',
+      {minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;}
+    if(reduce||end===0){el.textContent=fmt(end);return;}
+    var dur=1000,t0=null;
+    function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1);
+      var e=1-Math.pow(1-p,3);el.textContent=fmt(end*e);
+      if(p<1){requestAnimationFrame(step);}else{el.textContent=fmt(end);}}
+    requestAnimationFrame(step);
+  });
+})();
+</script></body></html>
