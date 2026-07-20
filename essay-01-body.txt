@@ -1,0 +1,63 @@
+So I had this idea for an app.
+
+A couple of years ago I was talking about it with a friend. We worked in the kind of company where you do hourly shifts — you go in, do your hours, simple stuff. And every week they send everybody a spreadsheet. Everybody's schedule on one sheet, so many names, and the text is so small you have to trace your name across the row and check each day just to know when you're working. Very small, very annoying, hard to pinpoint your days. But it's not impossible. It works, actually.
+
+The founder in me couldn't leave that alone though. I've dreamt of building an app — not "having a business," building an *app* — for as long as I can remember. And here was one sitting inside my own job. Build it for work, make some money off it. That was the whole plan.
+
+I couldn't code back then. So I went to a good friend of mine who's a programmer — junior at Goldman Sachs, the same guy who'd been telling me for years I should learn to code myself. I said bro, I want to build an app. And he didn't say "let's build it." He gave me a number.
+
+And the guy he was introducing me to was not somebody he knew directly. It was a friend of a friend. So my friend introduced me to his friend, who introduced me to this developer. That was when I first got suspicious, honestly — because this was no longer somebody I know, or even somebody known by somebody I know. It was "trust me, my guy can get it done," passed down a chain, and every link in the chain said the same thing.
+
+I ignored the feeling. Noted.
+
+We spoke for the first time in December 2024. I paid for the first time in January 2025. I'm Nigerian — based here in Turku, Finland, but Nigerian — so I contacted Nigerians to build it, based in Nigeria. About €2,000 for the whole thing: design, front end, back end, everything. Two months of work. That was the agreement. And if it grew into a real startup after that, then we talk employment, monthly pay, all of it.
+
+I was so excited. I'm finally building an app. It's happening.
+
+Then it got weird. I went to tell my boss at work — and he goes, "Is it the same app this other guy is building?"
+
+What other guy?
+
+Apparently a colleague of mine — the same friend I'd originally talked ideas with, before we had a falling out over something else entirely — had also thought deeply about that spreadsheet after our one conversation, and he was also building the app. Both of us. Separately. Secretly. Same app. Real life actually does this.
+
+But here was the difference: he was vibe-coding his version himself. Me, I had spent €2,000 on professionals. So I thought — of course I'm going to win this. Mine will be quality grade. He's just prompting an AI.
+
+Now there was a race, though. I went back to my developer and said the story has changed, there's a competitor, my boss is warm to this — he wants to see it, touch it, experience it — I cannot deliver late anymore. I need it earlier than we said. He said okay, no problem. That's just going to cost more money.
+
+I don't even remember the exact math anymore. What I know is that everything I ever paid came to about €2,000, and part of it was me paying *extra* to get my own app on time.
+
+The designs got done. I showed my boss. He said they're great — but designs don't mean much, he wants to touch the actual app. Fair. So I asked my developer: when will it be ready? He gave me a date. And I did the thing I want you to notice, because this is where it actually went wrong: I took his date and made it my promise. I booked the meeting with my boss for that day.
+
+Then the countdown. If you've been here, you know this rhythm already.
+
+A week before: bro, is it ready? — No, not ready, but almost done, just finalizing a few things.
+
+The weekend: bro? — By Monday everything's going to be ready.
+
+Monday: — You know how it is, there's no electricity in Nigeria, that's why it's slow. But before your meeting, it'll be ready.
+
+And I kept believing him. Every single round. I kept believing all these stories.
+
+The morning of the meeting I asked one last time. I need to touch my app before my boss touches it. And that's when he confessed: the app was not ready. The guy doing the back end wasn't even responding to him anymore.
+
+The whole thing shattered me.
+
+I walked into that meeting with nothing. And this is the part nobody tells you about being a founder — you have to look into people's eyes and say: this thing I promised you, that I said I was going to show you — I'm sorry, I cannot show you. My boss was warm to it. He *wanted* to experience it. And I stood there with empty hands because a man three links down a trust chain made me promise something he never intended to keep on time.
+
+It sent me straight into depression. I mean that word properly. Being a founder has these incredibly low places in it, and being blatantly lied to while you're trying to build something is one of the lowest. I was there for a while.
+
+And it nearly cost me a friendship on top. I went back to my close friend — the one who started the chain — and said bro, these are the guys you referred me to, they're not delivering, I'm stuck with no way of getting anything out of this. And he basically washed his hands of it. Said he didn't want to police anybody. That hurt more than the money, honestly. Because where I'm from, a referral means something. If you refer someone to your friend, you're saying: I vouch for this person. I found out it meant nothing. That one took a while to forgive.
+
+You want the ending? There's no clean one. The app finally went live on the Apple App Store around the end of 2025 — more than a year after "two months." On Google Play it simply does not exist, for reasons I've honestly stopped trying to understand. It's July 2026 now, nineteen months since that first payment, and I still don't have the complete thing I paid for. Nobody ran away with my money like in a movie. It just leaked — one "almost ready" at a time.
+
+There's this quote — Napoleon gets credit for it — *if you want a thing done, do it yourself.* I used to hear that as old-man talk. I don't anymore.
+
+Because thank God for advancements in AI. Everything that developer was supposed to build for me, I can now build myself — for twenty, maybe a hundred dollars a month, with AI doing the hands and me doing the judgment. My colleague, vibe-coding his version alone? He wasn't the amateur in this story. He was early. That's the part that still makes me laugh.
+
+So that's what I do now. One person, one cheap server here in Turku, AI agents doing the work. I'm going from €0 to €10,000 a month building my own stuff — without people being unreliable, without anyone lying to my face — and I'm doing it with the books open, every number public, updated by the machine and not by hand. Will the AI also lie to me every once in a while, hallucinate a fact? Yes. But there are ways around that, and there were never ways around "trust me."
+
+That's my journey. This newsletter is me writing it down as it happens.
+
+— Dayo
+
+*Turku, Finland. One person, one server, a fleet of agents. Every number public: oroomi.github.io/open-books*
