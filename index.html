@@ -1,106 +1,122 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Open books — Fables of a Failed Founder</title><meta name="description" content="The comeback, measured. After paying for an app that was always almost ready: €0→€10k/mo in public — updated hourly, committed to a public repo, never hand-edited."><meta property="og:title" content="Open books — Fables of a Failed Founder"><meta property="og:description" content="Failure, documented. The comeback, measured: €0→€10k/mo with every number public."><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>Open books — Fables of a Failed Founder</title><meta name="description" content="The comeback, measured. After paying for an app that was always almost ready: €0→€10k/mo in public — updated hourly, committed to a public repo, never hand-edited."><meta property="og:title" content="Open books — Fables of a Failed Founder"><meta property="og:description" content="Failure, documented. The comeback, measured: €0→€10k/mo with every number public."><style>
+/* Direction B — "The Broadcast". The page IS the film: charcoal, one red, no
+   light-mode escape hatch. The old sheet shipped a prefers-color-scheme:light
+   override, so daytime visitors got a cream SaaS dashboard with pink chips —
+   a failure documentary rendered as a cheerful analytics startup. Killed.
+   Hierarchy: one scoreboard number, one quiet stat row, receipts as texture. */
 :root{
-  --bg:#0a0a0b; --plane:#0f0f11; --surface:#141417; --surface-2:#1a1a1e;
-  --border:rgba(255,255,255,.08); --border-strong:rgba(255,255,255,.14);
-  --ink:#f4f4f2; --ink-dim:#a6a6a0; --ink-mute:#6d6d68;
-  --accent:#E5484D; --accent-dim:#A63232;
-  --good:#3fb64f; --link:#E5484D;
-  --spark-line:#E5484D; --spark-g0:rgba(229,72,77,.26); --spark-g1:rgba(229,72,77,0);
-  --accent-tint:rgba(229,72,77,.09); --accent-tint-border:rgba(229,72,77,.28);
-  --accent-glow:rgba(229,72,77,.35);
+  --bg:#0a0a0b; --plane:#0e0e10; --surface:#141417; --line:rgba(255,255,255,.07);
+  --line-2:rgba(255,255,255,.13);
+  --ink:#f4f4f2; --dim:#9a9a94; --mute:#61615c;
+  --red:#E5484D; --red-dim:#8f2f33;
+  --spark-line:#E5484D; --spark-g0:rgba(229,72,77,.22); --spark-g1:rgba(229,72,77,0);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);
-  font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  -webkit-font-smoothing:antialiased}
-::selection{background:var(--accent);color:#0a0a0b}
-main{max-width:960px;margin:0 auto;padding:clamp(28px,6vw,72px) 20px 80px}
-a{color:var(--link);text-decoration:none;border-bottom:1px solid rgba(229,72,77,.35)}
-a:hover{border-bottom-color:var(--link)}
+  font:16px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;letter-spacing:-.005em}
+/* faint film grain over everything — the video grade, as a page */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;
+  opacity:.16;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+::selection{background:var(--red);color:#0a0a0b}
+main{max-width:1000px;margin:0 auto;padding:clamp(32px,7vw,88px) 22px 64px;position:relative;z-index:1}
+a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--red-dim)}
+a:hover{border-bottom-color:var(--red)}
+.mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace}
 
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);
-  font-weight:600;margin:0 0 18px}
-.eyebrow .mark{width:9px;height:9px;background:var(--accent);
-  transform:rotate(12deg);display:inline-block}
+/* ---- masthead */
+.eyebrow{display:flex;align-items:center;gap:9px;font-size:.7rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mute);
+  font-weight:600;margin:0 0 26px}
+.eyebrow .mark{width:9px;height:9px;background:var(--red);transform:rotate(12deg);flex:none}
+.live{margin-left:auto;display:inline-flex;align-items:center;gap:7px;letter-spacing:.12em}
+.live i{width:6px;height:6px;border-radius:50%;background:var(--red);
+  box-shadow:0 0 0 0 rgba(229,72,77,.6);animation:pulse 2.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(229,72,77,.55)}
+  70%{box-shadow:0 0 0 9px rgba(229,72,77,0)}100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}}
 
-h1{font-size:clamp(2rem,6.5vw,3.5rem);line-height:1.04;letter-spacing:-.02em;
-  font-weight:800;margin:0 0 20px}
-h1 .arrow{color:var(--accent)}
-h1 .mo{color:var(--ink-mute);font-weight:600;font-size:.5em;letter-spacing:0}
-.lede{font-size:clamp(1rem,2.4vw,1.18rem);color:var(--ink-dim);max-width:60ch;
-  margin:0 0 40px}
+h1{font-size:clamp(1.9rem,5.6vw,3.1rem);line-height:1.06;letter-spacing:-.035em;
+  font-weight:800;margin:0 0 18px;max-width:19ch}
+h1 .arrow{color:var(--red)}
+h1 .mo{color:var(--mute);font-weight:600;font-size:.46em;letter-spacing:0}
+.lede{font-size:clamp(.98rem,2.1vw,1.1rem);color:var(--dim);max-width:58ch;margin:0 0 52px}
 .lede b{color:var(--ink);font-weight:600}
 
-/* headline MRR block */
-.mrr{background:linear-gradient(180deg,var(--surface) 0%,var(--plane) 100%);
-  border:1px solid var(--border);border-radius:18px;padding:clamp(22px,4vw,34px);
-  margin:0 0 44px;position:relative;overflow:hidden}
-.mrr::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(120% 80% at 100% 0%,var(--accent-tint),transparent 60%)}
-.mrr .row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;
-  position:relative}
-.mrr .fig{font-size:clamp(3rem,11vw,5.2rem);font-weight:800;letter-spacing:-.03em;
-  line-height:1}
-.mrr .badge{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;
-  font-weight:600;letter-spacing:.02em;color:var(--accent);
-  background:var(--accent-tint);border:1px solid var(--accent-tint-border);
-  border-radius:999px;padding:6px 13px}
-.mrr .note{color:var(--ink-dim);font-size:.95rem;margin:14px 0 0;position:relative}
-.mrr .track{position:relative;height:8px;border-radius:6px;
-  background:var(--surface-2);border:1px solid var(--border);
-  margin:20px 0 8px;overflow:hidden}
-.mrr .fill{position:absolute;inset:0 auto 0 0;border-radius:6px;
-  background:linear-gradient(90deg,var(--accent-dim),var(--accent));
-  box-shadow:0 0 12px var(--accent-glow)}
-.mrr .scale{display:flex;justify-content:space-between;font-size:.78rem;
-  color:var(--ink-mute);position:relative}
+/* ---- the scoreboard: one number owns the page */
+.board{border-top:1px solid var(--line-2);border-bottom:1px solid var(--line);
+  padding:clamp(26px,5vw,46px) 0 clamp(22px,4vw,34px);margin:0 0 6px;position:relative}
+.board .fig{font-size:clamp(4.6rem,17vw,9.5rem);line-height:.88;font-weight:800;
+  letter-spacing:-.055em;margin:0 0 4px;
+  background:linear-gradient(178deg,#fff 12%,#b9b9b4 96%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.board .cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin:0 0 22px}
+.board .badge{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;color:var(--red)}
+.board .note{color:var(--dim);max-width:56ch;margin:0 0 26px;font-size:.94rem}
+.track{height:3px;background:rgba(255,255,255,.07);position:relative;overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;background:var(--red);
+  box-shadow:0 0 18px rgba(229,72,77,.55)}
+.scale{display:flex;justify-content:space-between;margin-top:9px;
+  font-size:.72rem;color:var(--mute);letter-spacing:.06em}
 
-/* stat grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:14px;margin:0 0 44px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;
-  padding:20px 22px;display:flex;flex-direction:column;min-height:150px;
-  transition:border-color .2s,transform .2s}
-.card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
-.card .l{color:var(--ink-dim);font-size:.9rem;font-weight:500}
-.card .v{font-size:2.2rem;font-weight:800;letter-spacing:-.02em;margin:6px 0 2px}
-.card .s{font-size:.82rem;color:var(--ink-mute)}
-.card .s b{color:var(--good);font-weight:600}
-.card .spark-wrap{margin-top:auto;padding-top:14px}
-.spark{display:block;width:100%;height:34px}
-.sk-line{fill:none;stroke:var(--spark-line);stroke-width:1.6;
-  stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.sk-dot{fill:var(--spark-line)}
-.sk-g0{stop-color:var(--spark-g0)}.sk-g1{stop-color:var(--spark-g1)}
-.sk-flat{stroke:var(--border-strong);stroke-width:1;stroke-dasharray:2 3;
-  vector-effect:non-scaling-stroke}
-.card .hint{font-size:.72rem;color:var(--ink-mute);margin-top:6px;opacity:.8}
+/* ---- quiet stat row: labels small, numbers aligned, no card chrome */
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+  gap:1px;background:var(--line);border-bottom:1px solid var(--line);margin:0 0 54px}
+.cell{background:var(--bg);padding:22px 20px 18px;position:relative}
+.cell .l{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--mute);font-weight:600;margin:0 0 10px}
+.cell .v{font-size:clamp(1.5rem,3.4vw,2rem);font-weight:700;letter-spacing:-.03em;line-height:1}
+.cell .s{font-size:.78rem;color:var(--dim);margin-top:7px;min-height:1.1em}
+.cell .s b{color:var(--red);font-weight:600}
+.cell .spark-wrap{margin-top:12px;height:26px;opacity:.85}
+.cell svg{display:block;width:100%;height:26px}
+.spark .sk-line{fill:none;stroke:var(--spark-line);stroke-width:1.5;
+  stroke-linejoin:round;stroke-linecap:round}
+.spark .sk-fill{fill:url(#g)}
+.spark .sk-g0{stop-color:var(--spark-g0)}
+.spark .sk-g1{stop-color:var(--spark-g1)}
+.spark .sk-flat{stroke:rgba(255,255,255,.13);stroke-width:1;stroke-dasharray:2 4}
+.spark .sk-dot{fill:var(--red)}
 
-/* footer */
-footer{border-top:1px solid var(--border);padding-top:32px;margin-top:8px}
-footer h2{font-size:1.15rem;font-weight:700;margin:0 0 12px;letter-spacing:-.01em}
-footer p{color:var(--ink-dim);max-width:66ch;margin:0 0 14px;font-size:.95rem}
-footer .meta{color:var(--ink-mute);font-size:.82rem;margin-top:24px;line-height:1.9}
-.mono{font-variant-numeric:tabular-nums}
+/* ---- receipts: the git trail as the aesthetic, not a footnote */
+.receipts{border:1px solid var(--line);background:var(--plane);margin:0 0 52px}
+.receipts .hd{display:flex;align-items:center;gap:10px;padding:13px 18px;
+  border-bottom:1px solid var(--line);font-size:.7rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--mute);font-weight:600}
+.receipts .hd .dot{width:7px;height:7px;border-radius:50%;background:var(--red)}
+.receipts .hd a{margin-left:auto;border:0;color:var(--mute);letter-spacing:.06em;
+  text-transform:none;font-size:.74rem}
+.receipts .hd a:hover{color:var(--ink)}
+.rec{display:flex;gap:16px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.04);
+  font-size:.8rem;align-items:baseline}
+.rec:last-child{border-bottom:0}
+.rec .sha{color:var(--red);flex:none;width:6ch}
+.rec .when{color:var(--mute);flex:none;letter-spacing:.02em}
+.rec .msg{color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
-@media (prefers-color-scheme:light){
-  :root{
-    --bg:#faf9f6; --plane:#ffffff; --surface:#ffffff; --surface-2:#f1efe9;
-    --border:rgba(11,11,11,.10); --border-strong:rgba(11,11,11,.18);
-    --ink:#141310; --ink-dim:#57544d; --ink-mute:#8a877f;
-    --accent:#C93A3F; --accent-dim:#A63232; --good:#0a8f2e; --link:#C93A3F;
-    --spark-line:#C93A3F; --spark-g0:rgba(201,58,63,.20); --spark-g1:rgba(201,58,63,0);
-    --accent-tint:rgba(201,58,63,.07); --accent-tint-border:rgba(201,58,63,.24);
-    --accent-glow:rgba(201,58,63,.25);
-  }
-  body{color:var(--ink)}
-  ::selection{background:var(--accent);color:#fff}
+/* ---- work strip: the page stops dead-ending */
+.work{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px;margin:0 0 56px}
+.wk{border:1px solid var(--line);padding:18px 18px 16px;background:var(--plane);
+  display:block;border-bottom:1px solid var(--line)}
+.wk:hover{border-color:var(--line-2);background:var(--surface)}
+.wk .k{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin:0 0 8px}
+.wk .t{font-weight:600;font-size:.95rem;margin:0 0 5px;letter-spacing:-.01em}
+.wk .d{font-size:.79rem;color:var(--mute)}
+
+footer{border-top:1px solid var(--line);padding-top:34px;color:var(--dim);font-size:.92rem}
+footer h2{font-size:1rem;color:var(--ink);margin:0 0 14px;letter-spacing:-.01em;
+  text-transform:uppercase;font-size:.72rem;letter-spacing:.16em;color:var(--mute)}
+footer p{max-width:64ch;margin:0 0 14px}
+.meta{margin-top:26px;color:var(--mute);font-size:.76rem;letter-spacing:.02em}
+@media(max-width:560px){
+  .rec .msg{white-space:normal}
+  .rec{flex-wrap:wrap;gap:6px 14px}
 }
-@media (max-width:540px){ .mrr .fig{font-size:16vw} }
-@media (prefers-reduced-motion:reduce){ *{animation:none} }
-</style></head><body><main><div class="eyebrow"><span class="mark"></span>Open books · updated hourly, never by hand</div><h1>The €0 <span class="arrow">&rarr;</span> €10,000<span class="mo">/mo</span> comeback</h1><p class="lede">I've failed at this before — a developer I paid who delivered a year late, half-built that shipped nothing. This time everything runs in public: every euro, every send, every &euro;0. Most of the operation is machines; the failures are all mine. This is <b>week 2</b>.</p><div class="mrr"><div class="row"><div class="fig" data-count="0" data-pre="&euro;" data-dec="0">€0</div><span class="badge">day one — books open</span></div><p class="note">Zero revenue, shown on purpose. Most founders hide this number until it&#x27;s flattering. The whole point here is that you get to watch it move from nothing.</p><div class="track"><div class="fill" style="width:1.20%"></div></div><div class="scale"><span>&euro;0</span><span class="mono">&euro;10,000 / mo goal</span></div></div><div class="grid"><div class="card"><div class="l">Email subscribers</div><div class="v" data-count="0" data-pre="" data-suf="" data-dec="0">0</div><div class="s">people who asked to follow along</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div><div class="card"><div class="l">Essays published</div><div class="v" data-count="0" data-pre="" data-suf="" data-dec="0">0</div><div class="s">written in the open, receipts attached</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div><div class="card"><div class="l">Cold emails sent</div><div class="v" data-count="531" data-pre="" data-suf="" data-dec="0">531</div><div class="s"><b>+181</b> this week</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-sends" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,29.8 21.8,29.6 23.3,26.0 24.8,23.5 26.2,23.3 27.7,23.3 29.2,23.3 30.7,23.3 32.2,23.3 33.7,23.3 35.1,23.3 36.6,23.3 38.1,23.3 39.6,23.3 41.1,23.3 42.6,23.3 44.0,23.3 45.5,23.3 47.0,23.3 48.5,23.3 50.0,23.3 51.5,23.3 52.9,23.3 54.4,23.3 55.9,23.1 57.4,23.0 58.9,19.3 60.4,16.8 61.8,16.6 63.3,16.6 64.8,16.6 66.3,16.6 67.8,16.6 69.3,16.6 70.7,16.6 72.2,16.6 73.7,16.6 75.2,16.6 76.7,16.6 78.2,16.6 79.6,16.6 81.1,16.6 82.6,16.6 84.1,16.6 85.6,16.6 87.1,16.6 88.5,16.6 90.0,16.6 91.5,16.5 93.0,16.3 94.5,12.7 96.0,10.1 97.4,10.0 98.9,10.0 100.4,10.0 101.9,10.0 103.4,10.0 104.9,10.0 106.3,10.0 107.8,10.0 109.3,10.0 110.8,10.0 112.3,10.0 113.8,10.0 115.2,10.0 116.7,10.0 118.2,10.0 119.7,10.0 121.2,10.0 122.7,10.0 124.1,10.0 125.6,10.0 127.1,9.8 128.6,9.6 130.1,6.0 131.6,4.2 133.0,4.0 134.5,4.0 136.0,4.0 136.0,30.0" fill="url(#sk-sends)"/><polyline points="4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,29.8 21.8,29.6 23.3,26.0 24.8,23.5 26.2,23.3 27.7,23.3 29.2,23.3 30.7,23.3 32.2,23.3 33.7,23.3 35.1,23.3 36.6,23.3 38.1,23.3 39.6,23.3 41.1,23.3 42.6,23.3 44.0,23.3 45.5,23.3 47.0,23.3 48.5,23.3 50.0,23.3 51.5,23.3 52.9,23.3 54.4,23.3 55.9,23.1 57.4,23.0 58.9,19.3 60.4,16.8 61.8,16.6 63.3,16.6 64.8,16.6 66.3,16.6 67.8,16.6 69.3,16.6 70.7,16.6 72.2,16.6 73.7,16.6 75.2,16.6 76.7,16.6 78.2,16.6 79.6,16.6 81.1,16.6 82.6,16.6 84.1,16.6 85.6,16.6 87.1,16.6 88.5,16.6 90.0,16.6 91.5,16.5 93.0,16.3 94.5,12.7 96.0,10.1 97.4,10.0 98.9,10.0 100.4,10.0 101.9,10.0 103.4,10.0 104.9,10.0 106.3,10.0 107.8,10.0 109.3,10.0 110.8,10.0 112.3,10.0 113.8,10.0 115.2,10.0 116.7,10.0 118.2,10.0 119.7,10.0 121.2,10.0 122.7,10.0 124.1,10.0 125.6,10.0 127.1,9.8 128.6,9.6 130.1,6.0 131.6,4.2 133.0,4.0 134.5,4.0 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></div></div><div class="card"><div class="l">Replies</div><div class="v" data-count="0" data-pre="" data-suf="" data-dec="0">0</div><div class="s">humans who wrote back</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div><div class="card"><div class="l">AI spend, all-time</div><div class="v" data-count="2.47767885848" data-pre="€" data-suf="" data-dec="0">€2</div><div class="s"><b>€1.12</b> this week</div><div class="hint">what it costs to have the agents run the company</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-ai" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,29.7 7.0,29.7 8.4,29.7 9.9,29.7 11.4,29.7 12.9,29.7 14.4,29.7 15.9,29.7 17.3,29.7 18.8,29.7 20.3,29.7 21.8,29.7 23.3,29.7 24.8,28.9 26.2,28.9 27.7,28.9 29.2,28.7 30.7,28.7 32.2,28.7 33.7,28.7 35.1,28.7 36.6,28.7 38.1,28.4 39.6,28.4 41.1,28.4 42.6,28.4 44.0,28.4 45.5,28.4 47.0,28.4 48.5,28.4 50.0,28.4 51.5,28.4 52.9,28.4 54.4,28.4 55.9,28.4 57.4,28.1 58.9,28.1 60.4,27.8 61.8,27.8 63.3,27.8 64.8,27.5 66.3,27.5 67.8,27.5 69.3,27.5 70.7,27.5 72.2,27.5 73.7,27.2 75.2,27.2 76.7,27.2 78.2,27.2 79.6,27.2 81.1,27.2 82.6,27.2 84.1,27.2 85.6,27.2 87.1,27.2 88.5,27.2 90.0,27.2 91.5,27.2 93.0,26.9 94.5,26.9 96.0,26.9 97.4,26.9 98.9,26.9 100.4,26.6 101.9,26.6 103.4,26.6 104.9,26.6 106.3,26.6 107.8,26.6 109.3,26.4 110.8,26.4 112.3,26.4 113.8,26.4 115.2,26.4 116.7,26.4 118.2,26.4 119.7,26.4 121.2,26.4 122.7,26.4 124.1,26.4 125.6,26.4 127.1,26.4 128.6,26.2 130.1,26.2 131.6,26.2 133.0,26.2 134.5,26.2 136.0,4.0 136.0,30.0" fill="url(#sk-ai)"/><polyline points="4.0,30.0 5.5,29.7 7.0,29.7 8.4,29.7 9.9,29.7 11.4,29.7 12.9,29.7 14.4,29.7 15.9,29.7 17.3,29.7 18.8,29.7 20.3,29.7 21.8,29.7 23.3,29.7 24.8,28.9 26.2,28.9 27.7,28.9 29.2,28.7 30.7,28.7 32.2,28.7 33.7,28.7 35.1,28.7 36.6,28.7 38.1,28.4 39.6,28.4 41.1,28.4 42.6,28.4 44.0,28.4 45.5,28.4 47.0,28.4 48.5,28.4 50.0,28.4 51.5,28.4 52.9,28.4 54.4,28.4 55.9,28.4 57.4,28.1 58.9,28.1 60.4,27.8 61.8,27.8 63.3,27.8 64.8,27.5 66.3,27.5 67.8,27.5 69.3,27.5 70.7,27.5 72.2,27.5 73.7,27.2 75.2,27.2 76.7,27.2 78.2,27.2 79.6,27.2 81.1,27.2 82.6,27.2 84.1,27.2 85.6,27.2 87.1,27.2 88.5,27.2 90.0,27.2 91.5,27.2 93.0,26.9 94.5,26.9 96.0,26.9 97.4,26.9 98.9,26.9 100.4,26.6 101.9,26.6 103.4,26.6 104.9,26.6 106.3,26.6 107.8,26.6 109.3,26.4 110.8,26.4 112.3,26.4 113.8,26.4 115.2,26.4 116.7,26.4 118.2,26.4 119.7,26.4 121.2,26.4 122.7,26.4 124.1,26.4 125.6,26.4 127.1,26.4 128.6,26.2 130.1,26.2 131.6,26.2 133.0,26.2 134.5,26.2 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></div></div><div class="card"><div class="l">Revenue</div><div class="v" data-count="0" data-pre="€" data-suf="" data-dec="0">€0</div><div class="s">not a cent yet — that's the story</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div></div><footer><h2>How this page works</h2><p>Nobody types these numbers. A script on a server reads the live databases every hour — the outreach logs, the subscriber count, the AI spend meter, the essays shipped — renders this exact page, and commits it to a public Git repository. No hand-editing, no rounding up, no quietly skipping a bad day.</p><p>Don't take my word for it: <a href="https://github.com/oroomi/open-books/commits/main">every hourly commit is timestamped in the open</a> — the machine's own paper trail is the proof the numbers aren't curated.</p><div class="meta">Generated 2026-07-24 12:25 UTC &middot; built &amp; run by Dayo Omisakin &middot; Turku, Finland &middot; <a href="https://mishakingstrategies.com">Mishaking Strategies</a></div></footer></main><script>
+</style></head><body><main><div class="eyebrow"><span class="mark"></span>Fables of a Failed Founder<span class="live"><i></i>live · updated hourly</span></div><h1>The €0 <span class="arrow">&rarr;</span> €10,000<span class="mo">/mo</span> comeback</h1><p class="lede">I paid a developer &euro;2,000 for an app. Nineteen months later I still don't have it — and a colleague built the same thing himself, with AI, for free. This is the rebuild, in public: every euro, every send, every zero. The machines do the work; the failures are mine. <b>Week 2</b>.</p><div class="board"><div class="fig" data-count="0" data-pre="&euro;" data-dec="0">€0</div><div class="cap"><span class="badge">day one · books open</span></div><p class="note">Zero revenue, published on purpose. Most founders hide this number until it flatters them. The point of this page is that you get to watch it move from nothing — or watch it not move.</p><div class="track"><div class="fill" style="width:0.80%"></div></div><div class="scale"><span class="mono">&euro;0</span><span class="mono">&euro;10,000 / mo</span></div></div><div class="row"><div class="cell"><div class="l">Cold emails</div><div class="v" data-count="531" data-pre="" data-suf="" data-dec="0">531</div><div class="s"><b>+181</b> this week</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-sends" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,29.8 21.8,29.6 23.3,26.0 24.8,23.5 26.2,23.3 27.7,23.3 29.2,23.3 30.7,23.3 32.2,23.3 33.7,23.3 35.1,23.3 36.6,23.3 38.1,23.3 39.6,23.3 41.1,23.3 42.6,23.3 44.0,23.3 45.5,23.3 47.0,23.3 48.5,23.3 50.0,23.3 51.5,23.3 52.9,23.3 54.4,23.3 55.9,23.1 57.4,23.0 58.9,19.3 60.4,16.8 61.8,16.6 63.3,16.6 64.8,16.6 66.3,16.6 67.8,16.6 69.3,16.6 70.7,16.6 72.2,16.6 73.7,16.6 75.2,16.6 76.7,16.6 78.2,16.6 79.6,16.6 81.1,16.6 82.6,16.6 84.1,16.6 85.6,16.6 87.1,16.6 88.5,16.6 90.0,16.6 91.5,16.5 93.0,16.3 94.5,12.7 96.0,10.1 97.4,10.0 98.9,10.0 100.4,10.0 101.9,10.0 103.4,10.0 104.9,10.0 106.3,10.0 107.8,10.0 109.3,10.0 110.8,10.0 112.3,10.0 113.8,10.0 115.2,10.0 116.7,10.0 118.2,10.0 119.7,10.0 121.2,10.0 122.7,10.0 124.1,10.0 125.6,10.0 127.1,9.8 128.6,9.6 130.1,6.0 131.6,4.2 133.0,4.0 134.5,4.0 136.0,4.0 136.0,30.0" fill="url(#sk-sends)"/><polyline points="4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,29.8 21.8,29.6 23.3,26.0 24.8,23.5 26.2,23.3 27.7,23.3 29.2,23.3 30.7,23.3 32.2,23.3 33.7,23.3 35.1,23.3 36.6,23.3 38.1,23.3 39.6,23.3 41.1,23.3 42.6,23.3 44.0,23.3 45.5,23.3 47.0,23.3 48.5,23.3 50.0,23.3 51.5,23.3 52.9,23.3 54.4,23.3 55.9,23.1 57.4,23.0 58.9,19.3 60.4,16.8 61.8,16.6 63.3,16.6 64.8,16.6 66.3,16.6 67.8,16.6 69.3,16.6 70.7,16.6 72.2,16.6 73.7,16.6 75.2,16.6 76.7,16.6 78.2,16.6 79.6,16.6 81.1,16.6 82.6,16.6 84.1,16.6 85.6,16.6 87.1,16.6 88.5,16.6 90.0,16.6 91.5,16.5 93.0,16.3 94.5,12.7 96.0,10.1 97.4,10.0 98.9,10.0 100.4,10.0 101.9,10.0 103.4,10.0 104.9,10.0 106.3,10.0 107.8,10.0 109.3,10.0 110.8,10.0 112.3,10.0 113.8,10.0 115.2,10.0 116.7,10.0 118.2,10.0 119.7,10.0 121.2,10.0 122.7,10.0 124.1,10.0 125.6,10.0 127.1,9.8 128.6,9.6 130.1,6.0 131.6,4.2 133.0,4.0 134.5,4.0 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></div></div><div class="cell"><div class="l">Replies</div><div class="v" data-count="0" data-pre="" data-suf="" data-dec="0">0</div><div class="s">humans who wrote back</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div><div class="cell"><div class="l">Essays</div><div class="v" data-count="1" data-pre="" data-suf="" data-dec="0">1</div><div class="s">published in the open</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-essays" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,30.0 27.7,30.0 29.2,30.0 30.7,30.0 32.2,30.0 33.7,30.0 35.1,30.0 36.6,30.0 38.1,30.0 39.6,30.0 41.1,30.0 42.6,30.0 44.0,30.0 45.5,30.0 47.0,30.0 48.5,30.0 50.0,30.0 51.5,30.0 52.9,30.0 54.4,30.0 55.9,30.0 57.4,30.0 58.9,30.0 60.4,30.0 61.8,30.0 63.3,30.0 64.8,30.0 66.3,30.0 67.8,30.0 69.3,30.0 70.7,30.0 72.2,30.0 73.7,30.0 75.2,30.0 76.7,30.0 78.2,30.0 79.6,30.0 81.1,30.0 82.6,30.0 84.1,30.0 85.6,30.0 87.1,30.0 88.5,30.0 90.0,30.0 91.5,30.0 93.0,30.0 94.5,30.0 96.0,30.0 97.4,30.0 98.9,30.0 100.4,30.0 101.9,30.0 103.4,30.0 104.9,30.0 106.3,30.0 107.8,30.0 109.3,30.0 110.8,30.0 112.3,30.0 113.8,30.0 115.2,30.0 116.7,30.0 118.2,30.0 119.7,30.0 121.2,30.0 122.7,30.0 124.1,30.0 125.6,30.0 127.1,30.0 128.6,30.0 130.1,30.0 131.6,30.0 133.0,30.0 134.5,30.0 136.0,4.0 136.0,30.0" fill="url(#sk-essays)"/><polyline points="4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,30.0 27.7,30.0 29.2,30.0 30.7,30.0 32.2,30.0 33.7,30.0 35.1,30.0 36.6,30.0 38.1,30.0 39.6,30.0 41.1,30.0 42.6,30.0 44.0,30.0 45.5,30.0 47.0,30.0 48.5,30.0 50.0,30.0 51.5,30.0 52.9,30.0 54.4,30.0 55.9,30.0 57.4,30.0 58.9,30.0 60.4,30.0 61.8,30.0 63.3,30.0 64.8,30.0 66.3,30.0 67.8,30.0 69.3,30.0 70.7,30.0 72.2,30.0 73.7,30.0 75.2,30.0 76.7,30.0 78.2,30.0 79.6,30.0 81.1,30.0 82.6,30.0 84.1,30.0 85.6,30.0 87.1,30.0 88.5,30.0 90.0,30.0 91.5,30.0 93.0,30.0 94.5,30.0 96.0,30.0 97.4,30.0 98.9,30.0 100.4,30.0 101.9,30.0 103.4,30.0 104.9,30.0 106.3,30.0 107.8,30.0 109.3,30.0 110.8,30.0 112.3,30.0 113.8,30.0 115.2,30.0 116.7,30.0 118.2,30.0 119.7,30.0 121.2,30.0 122.7,30.0 124.1,30.0 125.6,30.0 127.1,30.0 128.6,30.0 130.1,30.0 131.6,30.0 133.0,30.0 134.5,30.0 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></div></div><div class="cell"><div class="l">Subscribers</div><div class="v" data-count="0" data-pre="" data-suf="" data-dec="0">0</div><div class="s">asked to follow along</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div><div class="cell"><div class="l">AI spend</div><div class="v" data-count="3.11407643848" data-pre="€" data-suf="" data-dec="0">€3</div><div class="s"><b>€1.76</b> this week</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-ai" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,29.8 7.0,29.8 8.4,29.8 9.9,29.8 11.4,29.8 12.9,29.8 14.4,29.8 15.9,29.8 17.3,29.8 18.8,29.8 20.3,29.8 21.8,29.8 23.3,29.8 24.8,29.3 26.2,29.3 27.7,29.3 29.2,29.2 30.7,29.2 32.2,29.2 33.7,29.2 35.1,29.2 36.6,29.2 38.1,29.0 39.6,29.0 41.1,29.0 42.6,29.0 44.0,29.0 45.5,29.0 47.0,29.0 48.5,29.0 50.0,29.0 51.5,29.0 52.9,29.0 54.4,29.0 55.9,29.0 57.4,28.8 58.9,28.8 60.4,28.7 61.8,28.7 63.3,28.7 64.8,28.5 66.3,28.5 67.8,28.5 69.3,28.5 70.7,28.5 72.2,28.5 73.7,28.3 75.2,28.3 76.7,28.3 78.2,28.3 79.6,28.3 81.1,28.3 82.6,28.3 84.1,28.3 85.6,28.3 87.1,28.3 88.5,28.3 90.0,28.3 91.5,28.3 93.0,28.1 94.5,28.1 96.0,28.1 97.4,28.1 98.9,28.1 100.4,27.9 101.9,27.9 103.4,27.9 104.9,27.9 106.3,27.9 107.8,27.9 109.3,27.8 110.8,27.8 112.3,27.8 113.8,27.8 115.2,27.8 116.7,27.8 118.2,27.8 119.7,27.8 121.2,27.8 122.7,27.8 124.1,27.8 125.6,27.8 127.1,27.8 128.6,27.7 130.1,27.7 131.6,27.7 133.0,27.7 134.5,27.7 136.0,4.0 136.0,30.0" fill="url(#sk-ai)"/><polyline points="4.0,30.0 5.5,29.8 7.0,29.8 8.4,29.8 9.9,29.8 11.4,29.8 12.9,29.8 14.4,29.8 15.9,29.8 17.3,29.8 18.8,29.8 20.3,29.8 21.8,29.8 23.3,29.8 24.8,29.3 26.2,29.3 27.7,29.3 29.2,29.2 30.7,29.2 32.2,29.2 33.7,29.2 35.1,29.2 36.6,29.2 38.1,29.0 39.6,29.0 41.1,29.0 42.6,29.0 44.0,29.0 45.5,29.0 47.0,29.0 48.5,29.0 50.0,29.0 51.5,29.0 52.9,29.0 54.4,29.0 55.9,29.0 57.4,28.8 58.9,28.8 60.4,28.7 61.8,28.7 63.3,28.7 64.8,28.5 66.3,28.5 67.8,28.5 69.3,28.5 70.7,28.5 72.2,28.5 73.7,28.3 75.2,28.3 76.7,28.3 78.2,28.3 79.6,28.3 81.1,28.3 82.6,28.3 84.1,28.3 85.6,28.3 87.1,28.3 88.5,28.3 90.0,28.3 91.5,28.3 93.0,28.1 94.5,28.1 96.0,28.1 97.4,28.1 98.9,28.1 100.4,27.9 101.9,27.9 103.4,27.9 104.9,27.9 106.3,27.9 107.8,27.9 109.3,27.8 110.8,27.8 112.3,27.8 113.8,27.8 115.2,27.8 116.7,27.8 118.2,27.8 119.7,27.8 121.2,27.8 122.7,27.8 124.1,27.8 125.6,27.8 127.1,27.8 128.6,27.7 130.1,27.7 131.6,27.7 133.0,27.7 134.5,27.7 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></div></div></div><div class="receipts"><div class="hd"><span class="dot"></span>Machine commits · unedited<a href="https://github.com/oroomi/open-books/commits/main">full history &rarr;</a></div><div class="rec"><span class="sha mono">30c5219</span><span class="when mono">2026-07-24 12:25</span><span class="msg">books update — week 2, 2026-07-24 12:25 UTC</span></div><div class="rec"><span class="sha mono">497b224</span><span class="when mono">2026-07-24 11:25</span><span class="msg">books update — week 2, 2026-07-24 11:25 UTC</span></div><div class="rec"><span class="sha mono">73cfef2</span><span class="when mono">2026-07-24 10:25</span><span class="msg">books update — week 2, 2026-07-24 10:25 UTC</span></div><div class="rec"><span class="sha mono">3578597</span><span class="when mono">2026-07-24 09:25</span><span class="msg">books update — week 2, 2026-07-24 09:25 UTC</span></div><div class="rec"><span class="sha mono">eee2efb</span><span class="when mono">2026-07-24 08:25</span><span class="msg">books update — week 2, 2026-07-24 08:25 UTC</span></div><div class="rec"><span class="sha mono">546a15d</span><span class="when mono">2026-07-24 07:25</span><span class="msg">books update — week 2, 2026-07-24 07:25 UTC</span></div></div><div class="work"><a class="wk" href="https://oroomi.github.io/open-books/video1-full.mp4"><div class="k">Film</div><div class="t">€2,000 and Nineteen Months of Almost</div><div class="d">the failure this whole comeback is built on</div></a><a class="wk" href="https://fablesofafailedfounder.substack.com"><div class="k">Essay</div><div class="t">Read the long version</div><div class="d">the same story, written with receipts</div></a><a class="wk" href="https://www.threads.com/@fablesofafailedfounder"><div class="k">Follow</div><div class="t">@fablesofafailedfounder</div><div class="d">posts as it happens, failures included</div></a></div><footer><h2>How this page works</h2><p>Nobody types these numbers. A script on a server reads the live databases every hour — the outreach logs, the subscriber count, the AI spend meter, the essays shipped — renders this exact page, and commits it to a public Git repository. No hand-editing, no rounding up, no quietly skipping a bad day.</p><p>The commit list above is the proof: each line is the machine writing this page down, timestamped, in a repository anyone can read.</p><div class="meta">Generated 2026-07-24 12:44 UTC &middot; built &amp; run by Dayo Omisakin &middot; Turku, Finland &middot; <a href="https://mishakingstrategies.com">Mishaking Strategies</a></div></footer></main><script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('[data-count]').forEach(function(el){
