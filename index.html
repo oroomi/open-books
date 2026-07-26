@@ -1,137 +1,393 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>Open books — Fables of a Failed Founder</title><meta name="description" content="The comeback, measured. After paying for an app that was always almost ready: €0→€10k/mo in public — updated hourly, committed to a public repo, never hand-edited."><meta property="og:title" content="Open books — Fables of a Failed Founder"><meta property="og:description" content="Failure, documented. The comeback, measured: €0→€10k/mo with every number public."><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "64ee2a2eb0dd43d59d44491d8ff877df"}'></script><style>
-/* Direction B — "The Broadcast". The page IS the film: charcoal, one red, no
-   light-mode escape hatch. The old sheet shipped a prefers-color-scheme:light
-   override, so daytime visitors got a cream SaaS dashboard with pink chips —
-   a failure documentary rendered as a cheerful analytics startup. Killed.
-   Hierarchy: one scoreboard number, one quiet stat row, receipts as texture. */
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Open books — Fables of a Failed Founder</title>
+<meta name="description" content="The comeback, measured. After paying for an app that was always almost ready: €0→€10k/mo in public — updated hourly, committed to a public repo, never hand-edited.">
+<meta property="og:title" content="Open books — Fables of a Failed Founder">
+<meta property="og:description" content="Failure, documented. The comeback, measured: €0→€10k/mo with every number public.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Direction C — "The Ledger". The site is called open books, so the page IS the
+   book: ledger paper, a red margin rule, ink figures in tabular mono, accounting
+   conventions as storytelling (single rule = account open, costs in parentheses),
+   an audit trail signed by the machine, and red pencil marginalia from the human
+   inside it. One click flips it to "After hours" — the charcoal broadcast the
+   original shipped — because the concept survives inversion. */
 :root{
-  --bg:#0a0a0b; --plane:#0e0e10; --surface:#141417; --line:rgba(255,255,255,.07);
-  --line-2:rgba(255,255,255,.13);
-  --ink:#f4f4f2; --dim:#9a9a94; --mute:#61615c;
-  --red:#E5484D; --red-dim:#8f2f33;
-  --spark-line:#E5484D; --spark-g0:rgba(229,72,77,.22); --spark-g1:rgba(229,72,77,0);
+  --paper:#f3eee0; --paper-2:#faf6ea; --card:#fcf9f0;
+  --ink:#1e1a13; --ink-soft:#4b4536; --dim:#6d6654; --mute:#9c937d;
+  --rule:rgba(30,26,19,.16); --rule-soft:rgba(30,26,19,.08);
+  --margin-rule:rgba(198,64,72,.42);
+  --red:#c03a41; --red-ink:#b3363c;
+  --grain-blend:multiply; --grain-op:.05;
+  --tape:rgba(224,214,184,.65); --tape-line:rgba(30,26,19,.1);
+  --shadow:29,26,20;
+}
+[data-theme="dark"]{
+  --paper:#0b0b0d; --paper-2:#101013; --card:#151519;
+  --ink:#f1efe8; --ink-soft:#cbc8bd; --dim:#98968c; --mute:#605f59;
+  --rule:rgba(255,255,255,.11); --rule-soft:rgba(255,255,255,.05);
+  --margin-rule:rgba(229,72,77,.38);
+  --red:#e5484d; --red-ink:#e5484d;
+  --grain-blend:overlay; --grain-op:.14;
+  --tape:rgba(255,255,255,.08); --tape-line:rgba(255,255,255,.06);
+  --shadow:0,0,0;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);
-  font:16px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  -webkit-font-smoothing:antialiased;letter-spacing:-.005em}
-/* faint film grain over everything — the video grade, as a page */
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:16px/1.6 "Fraunces",Georgia,serif;
+  -webkit-font-smoothing:antialiased;
+  transition:background .5s ease,color .5s ease}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;
-  opacity:.16;mix-blend-mode:overlay;
+  opacity:var(--grain-op);mix-blend-mode:var(--grain-blend);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
-::selection{background:var(--red);color:#0a0a0b}
-main{max-width:1000px;margin:0 auto;padding:clamp(32px,7vw,88px) 22px 64px;position:relative;z-index:1}
-a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--red-dim)}
-a:hover{border-bottom-color:var(--red)}
-.mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace}
+::selection{background:var(--red);color:var(--paper)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--red)}
+a:hover{text-decoration-color:var(--ink)}
+:focus-visible{outline:2px dashed var(--red);outline-offset:3px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+.hand{font-family:"Caveat",cursive;color:var(--red-ink)}
 
-/* ---- masthead */
-.eyebrow{display:flex;align-items:center;gap:9px;font-size:.7rem;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--mute);
-  font-weight:600;margin:0 0 26px}
-.eyebrow .mark{width:9px;height:9px;background:var(--red);transform:rotate(12deg);flex:none}
-.live{margin-left:auto;display:inline-flex;align-items:center;gap:7px;letter-spacing:.12em}
+/* ---- the sheet: one page of the book, red margin rule down the left */
+.sheet{max-width:980px;margin:0 auto;position:relative;z-index:1;
+  padding:clamp(30px,6vw,72px) clamp(22px,5vw,64px) 80px}
+.sheet::before{content:"";position:absolute;top:0;bottom:0;
+  left:clamp(8px,2.4vw,26px);width:5px;pointer-events:none;
+  border-left:1.5px solid var(--margin-rule);border-right:1.5px solid var(--margin-rule)}
+
+/* ---- masthead: newspaper nameplate for a book of accounts */
+.mast-rule{height:6px;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink)}
+.mast-top{display:flex;align-items:center;gap:10px;margin:22px 0 8px;
+  font:600 .68rem/1 "IBM Plex Mono";letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.mast-top .mark{width:9px;height:9px;background:var(--red);transform:rotate(12deg);flex:none}
+.live{margin-left:auto;display:inline-flex;align-items:center;gap:7px;letter-spacing:.14em;color:var(--dim)}
 .live i{width:6px;height:6px;border-radius:50%;background:var(--red);
-  box-shadow:0 0 0 0 rgba(229,72,77,.6);animation:pulse 2.6s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(229,72,77,.55)}
-  70%{box-shadow:0 0 0 9px rgba(229,72,77,0)}100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}}
+  box-shadow:0 0 0 0 rgba(192,58,65,.55);animation:pulse 2.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(192,58,65,.5)}
+  70%{box-shadow:0 0 0 9px rgba(192,58,65,0)}100%{box-shadow:0 0 0 0 rgba(192,58,65,0)}}
+.mast-title{font-size:clamp(3.1rem,9.4vw,6.2rem);line-height:.95;letter-spacing:-.032em;
+  font-weight:700;margin:6px 0 14px;text-align:center}
+.mast-meta{display:flex;justify-content:space-between;gap:10px 18px;flex-wrap:wrap;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  padding:7px 2px;margin:0 0 44px;
+  font:500 .66rem/1.5 "IBM Plex Mono";letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 
-h1{font-size:clamp(1.9rem,5.6vw,3.1rem);line-height:1.06;letter-spacing:-.035em;
-  font-weight:800;margin:0 0 18px;max-width:19ch}
-h1 .arrow{color:var(--red)}
-h1 .mo{color:var(--mute);font-weight:600;font-size:.46em;letter-spacing:0}
-.lede{font-size:clamp(.98rem,2.1vw,1.1rem);color:var(--dim);max-width:58ch;margin:0 0 52px}
+/* ---- the story */
+.story{position:relative;padding-right:clamp(0px,24vw,240px);margin-bottom:58px}
+.headline{font-size:clamp(1.85rem,5.2vw,3.05rem);line-height:1.08;letter-spacing:-.03em;
+  font-weight:600;margin:0 0 18px;max-width:20ch}
+.headline .arr{color:var(--red)}
+.headline .per{color:var(--mute);font-weight:500;font-size:.46em;letter-spacing:0}
+.lede{font-size:clamp(1rem,2.1vw,1.13rem);color:var(--dim);max-width:56ch;margin:0}
 .lede b{color:var(--ink);font-weight:600}
+.note-story{position:absolute;right:0;top:34%;width:210px;
+  font-size:1.3rem;line-height:1.15;transform:rotate(-2.5deg)}
+.note-story::before{content:"";display:block;width:52px;height:1.5px;background:var(--red-ink);
+  opacity:.6;margin-bottom:8px;transform:rotate(1.5deg)}
 
-/* ---- the scoreboard: one number owns the page */
-.board{border-top:1px solid var(--line-2);border-bottom:1px solid var(--line);
-  padding:clamp(26px,5vw,46px) 0 clamp(22px,4vw,34px);margin:0 0 6px;position:relative}
-.board .fig{font-size:clamp(4.6rem,17vw,9.5rem);line-height:.88;font-weight:800;
-  letter-spacing:-.055em;margin:0 0 4px;
-  background:linear-gradient(178deg,#fff 12%,#b9b9b4 96%);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.board .cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin:0 0 22px}
-.board .badge{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
-  font-weight:700;color:var(--red)}
-.board .note{color:var(--dim);max-width:56ch;margin:0 0 26px;font-size:.94rem}
-.track{height:3px;background:rgba(255,255,255,.07);position:relative;overflow:hidden}
-.fill{position:absolute;inset:0 auto 0 0;background:var(--red);
-  box-shadow:0 0 18px rgba(229,72,77,.55)}
-.scale{display:flex;justify-content:space-between;margin-top:9px;
-  font-size:.72rem;color:var(--mute);letter-spacing:.06em}
+/* ---- account current: the balance line */
+.board{border-top:1.5px solid var(--ink);padding-top:26px;margin-bottom:60px;position:relative}
+.board-label{font:600 .68rem/1 "IBM Plex Mono";letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:14px;display:flex;gap:12px;align-items:baseline}
+.board-label .badge{color:var(--red);letter-spacing:.16em}
+.fig{font-size:clamp(5rem,19vw,11.5rem);line-height:.92;font-weight:600;letter-spacing:-.045em;
+  font-optical-sizing:auto}
+.fig-rule{height:16px;border-bottom:4px solid var(--ink);max-width:clamp(200px,42vw,460px)}
+.rule-note{font-size:.86rem;color:var(--mute);margin:10px 0 18px}
+.rule-note .dbl{border-bottom:3px double var(--ink);color:var(--ink-soft)}
+.board .note{color:var(--dim);max-width:56ch;margin:0 0 30px;font-size:.96rem}
+.scale{width:100%;height:auto;display:block}
 
-/* ---- quiet stat row: labels small, numbers aligned, no card chrome */
-.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
-  gap:1px;background:var(--line);border-bottom:1px solid var(--line);margin:0 0 54px}
-.cell{background:var(--bg);padding:22px 20px 18px;position:relative}
-.cell .l{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--mute);font-weight:600;margin:0 0 10px}
-.cell .v{font-size:clamp(1.5rem,3.4vw,2rem);font-weight:700;letter-spacing:-.03em;line-height:1}
-.cell .s{font-size:.78rem;color:var(--dim);margin-top:7px;min-height:1.1em}
-.cell .s b{color:var(--red);font-weight:600}
-.cell .spark-wrap{margin-top:12px;height:26px;opacity:.85}
-.cell svg{display:block;width:100%;height:26px}
-.spark .sk-line{fill:none;stroke:var(--spark-line);stroke-width:1.5;
-  stroke-linejoin:round;stroke-linecap:round}
-.spark .sk-fill{fill:url(#g)}
-.spark .sk-g0{stop-color:var(--spark-g0)}
-.spark .sk-g1{stop-color:var(--spark-g1)}
-.spark .sk-flat{stroke:rgba(255,255,255,.13);stroke-width:1;stroke-dasharray:2 4}
+/* ---- the day book */
+.sec{font:600 .72rem/1.4 "IBM Plex Mono";letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink);margin:0 0 18px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.sec::before{content:"";width:26px;height:1.5px;background:var(--red);align-self:center}
+.sec-sub{color:var(--mute);letter-spacing:.08em;font-weight:500;text-transform:none;font-size:.78rem}
+.daybook{margin-bottom:62px}
+.tbl-wrap{overflow-x:auto}
+.ledger{width:100%;min-width:660px;border-collapse:collapse}
+.ledger th,.ledger td{padding:15px 14px 13px;border-bottom:1px solid var(--rule);
+  vertical-align:baseline;text-align:left}
+.ledger thead th{font:600 .63rem/1 "IBM Plex Mono";letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);border-bottom:1.5px solid var(--ink);padding-bottom:10px}
+.ledger tbody th{font-weight:500;font-size:1.06rem;letter-spacing:-.005em}
+.ledger .num{text-align:right;font:500 1.4rem/1 "IBM Plex Mono";letter-spacing:-.02em}
+.ledger .wk{text-align:right;font:500 .95rem/1 "IBM Plex Mono";color:var(--ink-soft)}
+.ledger .wk.plus{color:var(--red);font-weight:600}
+.ledger .wk.cost{color:var(--red)}
+.ledger .dash{color:var(--mute);text-align:right;font-family:"IBM Plex Mono"}
+.ledger .trend{width:190px;padding-right:0}
+.ledger tr.hl{background:rgba(192,58,65,.055)}
+.ledger tr.hl th{box-shadow:inset 3px 0 0 var(--red)}
+.hand-inline{display:block;font-family:"Caveat",cursive;font-size:1.06rem;color:var(--red-ink);
+  line-height:1.1;margin-top:3px;transform:rotate(-1deg)}
+.spark{display:block;width:100%;max-width:180px;height:30px}
+.spark .sk-line{fill:none;stroke:var(--ink-soft);stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+.spark .sk-fill{opacity:.5}
+.spark .sk-g0{stop-color:var(--ink-soft);stop-opacity:.22}
+.spark .sk-g1{stop-color:var(--ink-soft);stop-opacity:0}
+.spark .sk-flat{stroke:var(--rule);stroke-width:1;stroke-dasharray:2 4;fill:none}
 .spark .sk-dot{fill:var(--red)}
 
-/* ---- receipts: the git trail as the aesthetic, not a footnote */
-.receipts{border:1px solid var(--line);background:var(--plane);margin:0 0 52px}
-.receipts .hd{display:flex;align-items:center;gap:10px;padding:13px 18px;
-  border-bottom:1px solid var(--line);font-size:.7rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--mute);font-weight:600}
-.receipts .hd .dot{width:7px;height:7px;border-radius:50%;background:var(--red)}
-.receipts .hd a{margin-left:auto;border:0;color:var(--mute);letter-spacing:.06em;
-  text-transform:none;font-size:.74rem}
-.receipts .hd a:hover{color:var(--ink)}
-.rec{display:flex;gap:16px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.04);
-  font-size:.8rem;align-items:baseline}
-.rec:last-child{border-bottom:0}
-.rec .sha{color:var(--red);flex:none;width:6ch}
-.rec .when{color:var(--mute);flex:none;letter-spacing:.02em}
-.rec .msg{color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* ---- audit trail */
+.audit{position:relative;margin-bottom:64px;padding-top:4px}
+.stamp{position:absolute;top:-14px;right:0;transform:rotate(-8deg);
+  border:2.5px solid var(--red);color:var(--red);border-radius:3px;
+  padding:7px 13px 6px;font:600 .66rem/1 "IBM Plex Mono";letter-spacing:.24em;
+  text-transform:uppercase;opacity:.82;pointer-events:none;
+  text-shadow:0 0 1px currentColor}
+.stamp.thump{animation:stampIn .5s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes stampIn{0%{transform:rotate(-8deg) scale(2.4);opacity:0}
+  62%{transform:rotate(-8deg) scale(.93);opacity:1}
+  100%{transform:rotate(-8deg) scale(1);opacity:.82}}
+.entries{list-style:none;margin:0 0 12px;padding:0;border-top:1.5px solid var(--ink)}
+.entries li{display:flex;gap:18px;align-items:baseline;padding:9px 6px;
+  border-bottom:1px solid var(--rule-soft);font:400 .79rem/1.5 "IBM Plex Mono"}
+.entries li:nth-child(even){background:var(--paper-2)}
+.entries .sha{color:var(--red);flex:none;width:7ch}
+.entries .when{color:var(--mute);flex:none}
+.entries .msg{color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.more{font:500 .76rem/1 "IBM Plex Mono";letter-spacing:.06em;text-decoration:none;
+  border-bottom:1px solid var(--red);padding-bottom:2px}
+.more:hover{border-bottom-color:var(--ink)}
 
-/* ---- work strip: the page stops dead-ending */
-.work{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:14px;margin:0 0 56px}
-.wk{border:1px solid var(--line);padding:18px 18px 16px;background:var(--plane);
-  display:block;border-bottom:1px solid var(--line)}
-.wk:hover{border-color:var(--line-2);background:var(--surface)}
-.wk .k{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--red);font-weight:700;margin:0 0 8px}
-.wk .t{font-weight:600;font-size:.95rem;margin:0 0 5px;letter-spacing:-.01em}
-.wk .d{font-size:.79rem;color:var(--mute)}
+/* ---- enclosures: paper slips taped into the book */
+.enclosures{margin-bottom:66px}
+.clips{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:20px;padding-top:12px}
+.clip{position:relative;display:block;background:var(--card);border:1px solid var(--rule);
+  padding:22px 20px 19px;text-decoration:none;
+  box-shadow:0 1px 0 var(--rule-soft),0 16px 30px -18px rgba(var(--shadow),.4);
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s}
+.clip::before{content:"";position:absolute;top:-9px;left:50%;width:66px;height:17px;
+  transform:translateX(-50%) rotate(-1.5deg);background:var(--tape);
+  border:1px solid var(--tape-line)}
+.c1{transform:rotate(-1.1deg)}.c2{transform:rotate(.7deg)}.c3{transform:rotate(-.5deg)}
+.clip:hover{transform:rotate(0) translateY(-4px);border-color:var(--red);
+  box-shadow:0 1px 0 var(--rule-soft),0 24px 38px -18px rgba(var(--shadow),.5)}
+.clip .ex{font:600 .63rem/1 "IBM Plex Mono";letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
+.clip .t{display:block;font-weight:600;font-size:1.08rem;line-height:1.28;letter-spacing:-.012em;margin:9px 0 7px}
+.clip .d{display:block;font-size:.83rem;color:var(--dim)}
 
-footer{border-top:1px solid var(--line);padding-top:34px;color:var(--dim);font-size:.92rem}
-footer h2{font-size:1rem;color:var(--ink);margin:0 0 14px;letter-spacing:-.01em;
-  text-transform:uppercase;font-size:.72rem;letter-spacing:.16em;color:var(--mute)}
-footer p{max-width:64ch;margin:0 0 14px}
-.meta{margin-top:26px;color:var(--mute);font-size:.76rem;letter-spacing:.02em}
-@media(max-width:560px){
-  .rec .msg{white-space:normal}
-  .rec{flex-wrap:wrap;gap:6px 14px}
+/* ---- colophon */
+.colo{border-top:3px solid var(--ink);padding-top:8px}
+.colo .rule2{height:1px;background:var(--ink);margin-bottom:26px}
+.colo p{max-width:62ch;color:var(--dim);font-size:.95rem;margin:0 0 14px}
+.foot-note{font-size:1.35rem;transform:rotate(-1.5deg);display:inline-block;margin:8px 0 4px}
+.colo .meta{margin-top:24px;color:var(--mute);font:400 .72rem/1.7 "IBM Plex Mono";letter-spacing:.03em}
+.colo .meta a{text-decoration:none;border-bottom:1px solid var(--red)}
+
+/* ---- mode toggle: one stamp-sized chip, top right */
+.mode-toggle{position:fixed;top:12px;right:14px;z-index:20;cursor:pointer;
+  background:var(--card);color:var(--ink-soft);border:1px solid var(--rule);
+  padding:8px 13px;font:600 .62rem/1 "IBM Plex Mono";letter-spacing:.18em;text-transform:uppercase;
+  transition:border-color .3s,color .3s,transform .3s}
+.mode-toggle:hover{border-color:var(--red);color:var(--red);transform:rotate(-1.5deg)}
+
+/* ---- reveal on scroll */
+.reveal{opacity:0;transform:translateY(16px);
+  transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:860px){
+  .story{padding-right:0}
+  .note-story{position:static;width:auto;margin:14px 0 0;font-size:1.2rem}
 }
-</style></head><body><main><div class="eyebrow"><span class="mark"></span>Fables of a Failed Founder<span class="live"><i></i>live · updated hourly</span></div><h1>The €0 <span class="arrow">&rarr;</span> €10,000<span class="mo">/mo</span> comeback</h1><p class="lede">I paid a developer &euro;2,000 for an app. Nineteen months later I still don't have it — and a colleague built the same thing himself, with AI, for free. This is the rebuild, in public: every euro, every send, every zero. The machines do the work; the failures are mine. <b>Week 2</b>.</p><div class="board"><div class="fig" data-count="0" data-pre="&euro;" data-dec="0">€0</div><div class="cap"><span class="badge">day one · books open</span></div><p class="note">Zero revenue, published on purpose. Most founders hide this number until it flatters them. The point of this page is that you get to watch it move from nothing — or watch it not move.</p><div class="track"><div class="fill" style="width:0.80%"></div></div><div class="scale"><span class="mono">&euro;0</span><span class="mono">&euro;10,000 / mo</span></div></div><div class="row"><div class="cell"><div class="l">Cold emails</div><div class="v" data-count="531" data-pre="" data-suf="" data-dec="0">531</div><div class="s"><b>+181</b> this week</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-sends" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,29.6 26.2,29.3 27.7,21.8 29.2,16.6 30.7,16.3 32.2,16.3 33.7,16.3 35.1,16.3 36.6,16.3 38.1,16.3 39.6,16.3 41.1,16.3 42.6,16.3 44.0,16.3 45.5,16.3 47.0,16.3 48.5,16.3 50.0,16.3 51.5,16.3 52.9,16.3 54.4,16.3 55.9,16.3 57.4,16.3 58.9,16.3 60.4,15.9 61.8,15.5 63.3,8.1 64.8,4.4 66.3,4.0 67.8,4.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0 136.0,30.0" fill="url(#sk-sends)"/><polyline points="4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,29.6 26.2,29.3 27.7,21.8 29.2,16.6 30.7,16.3 32.2,16.3 33.7,16.3 35.1,16.3 36.6,16.3 38.1,16.3 39.6,16.3 41.1,16.3 42.6,16.3 44.0,16.3 45.5,16.3 47.0,16.3 48.5,16.3 50.0,16.3 51.5,16.3 52.9,16.3 54.4,16.3 55.9,16.3 57.4,16.3 58.9,16.3 60.4,15.9 61.8,15.5 63.3,8.1 64.8,4.4 66.3,4.0 67.8,4.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></div></div><div class="cell"><div class="l">Replies</div><div class="v" data-count="1" data-pre="" data-suf="" data-dec="0">1</div><div class="s">humans who wrote back</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-replies" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,30.0 27.7,30.0 29.2,30.0 30.7,30.0 32.2,30.0 33.7,30.0 35.1,30.0 36.6,30.0 38.1,30.0 39.6,30.0 41.1,30.0 42.6,30.0 44.0,30.0 45.5,30.0 47.0,30.0 48.5,30.0 50.0,30.0 51.5,30.0 52.9,30.0 54.4,30.0 55.9,30.0 57.4,30.0 58.9,30.0 60.4,30.0 61.8,30.0 63.3,30.0 64.8,30.0 66.3,30.0 67.8,30.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0 136.0,30.0" fill="url(#sk-replies)"/><polyline points="4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,30.0 27.7,30.0 29.2,30.0 30.7,30.0 32.2,30.0 33.7,30.0 35.1,30.0 36.6,30.0 38.1,30.0 39.6,30.0 41.1,30.0 42.6,30.0 44.0,30.0 45.5,30.0 47.0,30.0 48.5,30.0 50.0,30.0 51.5,30.0 52.9,30.0 54.4,30.0 55.9,30.0 57.4,30.0 58.9,30.0 60.4,30.0 61.8,30.0 63.3,30.0 64.8,30.0 66.3,30.0 67.8,30.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></div></div><div class="cell"><div class="l">Essays</div><div class="v" data-count="1" data-pre="" data-suf="" data-dec="0">1</div><div class="s">published in the open</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-essays" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,30.0 27.7,30.0 29.2,30.0 30.7,30.0 32.2,30.0 33.7,30.0 35.1,30.0 36.6,30.0 38.1,30.0 39.6,30.0 41.1,30.0 42.6,30.0 44.0,30.0 45.5,30.0 47.0,30.0 48.5,30.0 50.0,30.0 51.5,30.0 52.9,30.0 54.4,30.0 55.9,30.0 57.4,30.0 58.9,30.0 60.4,30.0 61.8,30.0 63.3,30.0 64.8,30.0 66.3,30.0 67.8,30.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0 136.0,30.0" fill="url(#sk-essays)"/><polyline points="4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,30.0 27.7,30.0 29.2,30.0 30.7,30.0 32.2,30.0 33.7,30.0 35.1,30.0 36.6,30.0 38.1,30.0 39.6,30.0 41.1,30.0 42.6,30.0 44.0,30.0 45.5,30.0 47.0,30.0 48.5,30.0 50.0,30.0 51.5,30.0 52.9,30.0 54.4,30.0 55.9,30.0 57.4,30.0 58.9,30.0 60.4,30.0 61.8,30.0 63.3,30.0 64.8,30.0 66.3,30.0 67.8,30.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></div></div><div class="cell"><div class="l">Subscribers</div><div class="v" data-count="0" data-pre="" data-suf="" data-dec="0">0</div><div class="s">asked to follow along</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></div></div><div class="cell"><div class="l">AI spend</div><div class="v" data-count="10.00379703008" data-pre="€" data-suf="" data-dec="0">€10</div><div class="s"><b>€8.65</b> this week</div><div class="spark-wrap"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-ai" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,29.9 27.7,29.9 29.2,29.9 30.7,29.9 32.2,29.9 33.7,29.9 35.1,29.9 36.6,29.9 38.1,29.9 39.6,29.9 41.1,29.9 42.6,29.9 44.0,29.9 45.5,29.9 47.0,29.9 48.5,29.9 50.0,29.9 51.5,29.9 52.9,29.9 54.4,29.9 55.9,29.9 57.4,29.9 58.9,29.9 60.4,29.9 61.8,29.8 63.3,29.8 64.8,29.8 66.3,29.8 67.8,29.8 69.3,5.8 70.7,4.4 72.2,4.4 73.7,4.4 75.2,4.4 76.7,4.4 78.2,4.3 79.6,4.3 81.1,4.3 82.6,4.3 84.1,4.3 85.6,4.3 87.1,4.3 88.5,4.1 90.0,4.1 91.5,4.1 93.0,4.1 94.5,4.1 96.0,4.1 97.4,4.1 98.9,4.1 100.4,4.1 101.9,4.1 103.4,4.1 104.9,4.1 106.3,4.1 107.8,4.1 109.3,4.1 110.8,4.1 112.3,4.1 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0 136.0,30.0" fill="url(#sk-ai)"/><polyline points="4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,29.9 27.7,29.9 29.2,29.9 30.7,29.9 32.2,29.9 33.7,29.9 35.1,29.9 36.6,29.9 38.1,29.9 39.6,29.9 41.1,29.9 42.6,29.9 44.0,29.9 45.5,29.9 47.0,29.9 48.5,29.9 50.0,29.9 51.5,29.9 52.9,29.9 54.4,29.9 55.9,29.9 57.4,29.9 58.9,29.9 60.4,29.9 61.8,29.8 63.3,29.8 64.8,29.8 66.3,29.8 67.8,29.8 69.3,5.8 70.7,4.4 72.2,4.4 73.7,4.4 75.2,4.4 76.7,4.4 78.2,4.3 79.6,4.3 81.1,4.3 82.6,4.3 84.1,4.3 85.6,4.3 87.1,4.3 88.5,4.1 90.0,4.1 91.5,4.1 93.0,4.1 94.5,4.1 96.0,4.1 97.4,4.1 98.9,4.1 100.4,4.1 101.9,4.1 103.4,4.1 104.9,4.1 106.3,4.1 107.8,4.1 109.3,4.1 110.8,4.1 112.3,4.1 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></div></div></div><div class="receipts"><div class="hd"><span class="dot"></span>Machine commits · unedited<a href="https://github.com/oroomi/open-books/commits/main">full history &rarr;</a></div><div class="rec"><span class="sha mono">e3e0ae2</span><span class="when mono">2026-07-26 08:25</span><span class="msg">books update — week 2, 2026-07-26 08:25 UTC</span></div><div class="rec"><span class="sha mono">0d6564a</span><span class="when mono">2026-07-26 07:25</span><span class="msg">books update — week 2, 2026-07-26 07:25 UTC</span></div><div class="rec"><span class="sha mono">816da22</span><span class="when mono">2026-07-26 06:25</span><span class="msg">books update — week 2, 2026-07-26 06:25 UTC</span></div><div class="rec"><span class="sha mono">d000bb1</span><span class="when mono">2026-07-26 05:25</span><span class="msg">books update — week 2, 2026-07-26 05:25 UTC</span></div><div class="rec"><span class="sha mono">a462ff6</span><span class="when mono">2026-07-26 04:25</span><span class="msg">books update — week 2, 2026-07-26 04:25 UTC</span></div><div class="rec"><span class="sha mono">eb72562</span><span class="when mono">2026-07-26 03:25</span><span class="msg">books update — week 2, 2026-07-26 03:25 UTC</span></div></div><div class="work"><a class="wk" href="https://oroomi.github.io/open-books/video1-full.mp4"><div class="k">Film</div><div class="t">€2,000 and Nineteen Months of Almost</div><div class="d">the failure this whole comeback is built on</div></a><a class="wk" href="https://fablesofafailedfounder.substack.com"><div class="k">Essay</div><div class="t">Read the long version</div><div class="d">the same story, written with receipts</div></a><a class="wk" href="https://www.threads.com/@fablesofafailedfounder"><div class="k">Follow</div><div class="t">@fablesofafailedfounder</div><div class="d">posts as it happens, failures included</div></a></div><footer><h2>How this page works</h2><p>Nobody types these numbers. A script on a server reads the live databases every hour — the outreach logs, the subscriber count, the AI spend meter, the essays shipped — renders this exact page, and commits it to a public Git repository. No hand-editing, no rounding up, no quietly skipping a bad day.</p><p>The commit list above is the proof: each line is the machine writing this page down, timestamped, in a repository anyone can read.</p><div class="meta">Generated 2026-07-26 09:25 UTC &middot; built &amp; run by Dayo Omisakin &middot; Turku, Finland &middot; <a href="https://mishakingstrategies.com">Mishaking Strategies</a></div></footer></main><script>
+@media(max-width:560px){
+  .mast-title{text-align:left}
+  .mast-meta{justify-content:flex-start}
+  .entries li{flex-wrap:wrap;gap:4px 14px}
+  .entries .msg{white-space:normal;flex-basis:100%}
+  .stamp{position:static;display:inline-block;margin:0 0 14px;transform:rotate(-3deg)}
+  .mode-toggle{top:auto;bottom:12px;right:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .live i{animation:none}
+  .stamp.thump{animation:none}
+  body{transition:none}
+}
+@media print{
+  .mode-toggle{display:none}
+  .reveal{opacity:1;transform:none}
+  body{background:#fff}
+}
+</style>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "64ee2a2eb0dd43d59d44491d8ff877df"}'></script></head>
+<body>
+<button class="mode-toggle" id="modeToggle" aria-pressed="false" title="Toggle charcoal mode">After hours</button>
+<main class="sheet">
+
+  <div class="mast-rule"></div>
+  <header>
+    <div class="mast-top">
+      <span class="mark"></span>Fables of a Failed Founder
+      <span class="live"><i></i>Live · updated hourly</span>
+    </div>
+    <h1 class="mast-title">The Open Books</h1>
+    <div class="mast-meta">
+      <span>Vol. I &mdash; No. 2 &middot; Week 2</span>
+      <span>Turku, Finland</span>
+      <span>Sunday, 26 July 2026</span>
+    </div>
+  </header>
+
+  <section class="story reveal">
+    <h2 class="headline">The €0 <span class="arr">&rarr;</span> €10,000<span class="per">/mo</span> comeback, entered in ink</h2>
+    <aside class="hand note-story">nineteen months of &ldquo;almost ready.&rdquo;</aside>
+    <p class="lede">I paid a developer <b>€2,000</b> for an app. Nineteen months later I still don't have it — and a colleague built the same thing himself, with AI, for free. This is the rebuild, in public: every euro, every send, every zero. The machines do the work; the failures are mine. <b>Week 2</b>.</p>
+  </section>
+
+  <section class="board reveal">
+    <div class="board-label">Account current · monthly revenue <span class="badge">day one · books open</span></div>
+    <div class="fig" data-count="0" data-pre="€" data-dec="0">&euro;0</div>
+    <div class="fig-rule" aria-hidden="true"></div>
+    <p class="rule-note">In bookkeeping, a <span class="dbl">double rule</span> closes an account. This one stays open until €10,000.</p>
+    <p class="note">Zero revenue, published on purpose. Most founders hide this number until it flatters them. The point of this page is that you get to watch it move from nothing — or watch it not move.</p>
+    <svg class="scale" id="scale" viewBox="0 0 1000 68" role="img" aria-label="Progress from €0 to €10,000 per month: currently &euro;0, 0 percent of the way"></svg>
+  </section>
+
+  <section class="daybook reveal">
+    <h2 class="sec">The day book <span class="sec-sub">every number, entered in ink</span></h2>
+    <div class="tbl-wrap">
+      <table class="ledger">
+        <thead>
+          <tr><th>Entry</th><th style="text-align:right">To date</th><th style="text-align:right">This week</th><th class="trend">Trend · hourly</th></tr>
+        </thead>
+        <tbody><tr><th>Cold emails</th><td class="num" data-count="531" data-pre="" data-suf="" data-dec="0">531</td><td class="wk plus">+181</td><td class="trend"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-sends" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,29.6 24.8,29.3 26.2,21.8 27.7,16.6 29.2,16.3 30.7,16.3 32.2,16.3 33.7,16.3 35.1,16.3 36.6,16.3 38.1,16.3 39.6,16.3 41.1,16.3 42.6,16.3 44.0,16.3 45.5,16.3 47.0,16.3 48.5,16.3 50.0,16.3 51.5,16.3 52.9,16.3 54.4,16.3 55.9,16.3 57.4,16.3 58.9,15.9 60.4,15.5 61.8,8.1 63.3,4.4 64.8,4.0 66.3,4.0 67.8,4.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0 136.0,30.0" fill="url(#sk-sends)"/><polyline points="4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,29.6 24.8,29.3 26.2,21.8 27.7,16.6 29.2,16.3 30.7,16.3 32.2,16.3 33.7,16.3 35.1,16.3 36.6,16.3 38.1,16.3 39.6,16.3 41.1,16.3 42.6,16.3 44.0,16.3 45.5,16.3 47.0,16.3 48.5,16.3 50.0,16.3 51.5,16.3 52.9,16.3 54.4,16.3 55.9,16.3 57.4,16.3 58.9,15.9 60.4,15.5 61.8,8.1 63.3,4.4 64.8,4.0 66.3,4.0 67.8,4.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></td></tr><tr class="hl"><th>Replies<span class="hand-inline">one human wrote back — the whole page hinges on this line.</span></th><td class="num" data-count="1" data-pre="" data-suf="" data-dec="0">1</td><td class="wk plus">+1</td><td class="trend"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-replies" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,30.0 27.7,30.0 29.2,30.0 30.7,30.0 32.2,30.0 33.7,30.0 35.1,30.0 36.6,30.0 38.1,30.0 39.6,30.0 41.1,30.0 42.6,30.0 44.0,30.0 45.5,30.0 47.0,30.0 48.5,30.0 50.0,30.0 51.5,30.0 52.9,30.0 54.4,30.0 55.9,30.0 57.4,30.0 58.9,30.0 60.4,30.0 61.8,30.0 63.3,30.0 64.8,30.0 66.3,30.0 67.8,4.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0 136.0,30.0" fill="url(#sk-replies)"/><polyline points="4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,30.0 27.7,30.0 29.2,30.0 30.7,30.0 32.2,30.0 33.7,30.0 35.1,30.0 36.6,30.0 38.1,30.0 39.6,30.0 41.1,30.0 42.6,30.0 44.0,30.0 45.5,30.0 47.0,30.0 48.5,30.0 50.0,30.0 51.5,30.0 52.9,30.0 54.4,30.0 55.9,30.0 57.4,30.0 58.9,30.0 60.4,30.0 61.8,30.0 63.3,30.0 64.8,30.0 66.3,30.0 67.8,4.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></td></tr><tr><th>Essays</th><td class="num" data-count="1" data-pre="" data-suf="" data-dec="0">1</td><td class="wk plus">+1</td><td class="trend"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-essays" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,30.0 27.7,30.0 29.2,30.0 30.7,30.0 32.2,30.0 33.7,30.0 35.1,30.0 36.6,30.0 38.1,30.0 39.6,30.0 41.1,30.0 42.6,30.0 44.0,30.0 45.5,30.0 47.0,30.0 48.5,30.0 50.0,30.0 51.5,30.0 52.9,30.0 54.4,30.0 55.9,30.0 57.4,30.0 58.9,30.0 60.4,30.0 61.8,30.0 63.3,30.0 64.8,30.0 66.3,30.0 67.8,4.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0 136.0,30.0" fill="url(#sk-essays)"/><polyline points="4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,30.0 26.2,30.0 27.7,30.0 29.2,30.0 30.7,30.0 32.2,30.0 33.7,30.0 35.1,30.0 36.6,30.0 38.1,30.0 39.6,30.0 41.1,30.0 42.6,30.0 44.0,30.0 45.5,30.0 47.0,30.0 48.5,30.0 50.0,30.0 51.5,30.0 52.9,30.0 54.4,30.0 55.9,30.0 57.4,30.0 58.9,30.0 60.4,30.0 61.8,30.0 63.3,30.0 64.8,30.0 66.3,30.0 67.8,4.0 69.3,4.0 70.7,4.0 72.2,4.0 73.7,4.0 75.2,4.0 76.7,4.0 78.2,4.0 79.6,4.0 81.1,4.0 82.6,4.0 84.1,4.0 85.6,4.0 87.1,4.0 88.5,4.0 90.0,4.0 91.5,4.0 93.0,4.0 94.5,4.0 96.0,4.0 97.4,4.0 98.9,4.0 100.4,4.0 101.9,4.0 103.4,4.0 104.9,4.0 106.3,4.0 107.8,4.0 109.3,4.0 110.8,4.0 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></td></tr><tr><th>Subscribers</th><td class="num" data-count="0" data-pre="" data-suf="" data-dec="0">0</td><td class="dash">&mdash;</td><td class="trend"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><line x1="4" y1="17.0" x2="136" y2="17.0" class="sk-flat"/></svg></td></tr><tr><th>AI spend</th><td class="num" data-count="10.00379703008" data-pre="&euro;" data-suf="" data-dec="0">&euro;10</td><td class="wk cost">(&euro;8.65)</td><td class="trend"><svg class="spark" viewBox="0 0 140 34" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sk-ai" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sk-g0"/><stop offset="1" class="sk-g1"/></linearGradient></defs><polygon points="4.0,30.0 4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,29.9 26.2,29.9 27.7,29.9 29.2,29.9 30.7,29.9 32.2,29.9 33.7,29.9 35.1,29.9 36.6,29.9 38.1,29.9 39.6,29.9 41.1,29.9 42.6,29.9 44.0,29.9 45.5,29.9 47.0,29.9 48.5,29.9 50.0,29.9 51.5,29.9 52.9,29.9 54.4,29.9 55.9,29.9 57.4,29.9 58.9,29.9 60.4,29.8 61.8,29.8 63.3,29.8 64.8,29.8 66.3,29.8 67.8,5.8 69.3,4.4 70.7,4.4 72.2,4.4 73.7,4.4 75.2,4.4 76.7,4.3 78.2,4.3 79.6,4.3 81.1,4.3 82.6,4.3 84.1,4.3 85.6,4.3 87.1,4.1 88.5,4.1 90.0,4.1 91.5,4.1 93.0,4.1 94.5,4.1 96.0,4.1 97.4,4.1 98.9,4.1 100.4,4.1 101.9,4.1 103.4,4.1 104.9,4.1 106.3,4.1 107.8,4.1 109.3,4.1 110.8,4.1 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0 136.0,30.0" fill="url(#sk-ai)"/><polyline points="4.0,30.0 5.5,30.0 7.0,30.0 8.4,30.0 9.9,30.0 11.4,30.0 12.9,30.0 14.4,30.0 15.9,30.0 17.3,30.0 18.8,30.0 20.3,30.0 21.8,30.0 23.3,30.0 24.8,29.9 26.2,29.9 27.7,29.9 29.2,29.9 30.7,29.9 32.2,29.9 33.7,29.9 35.1,29.9 36.6,29.9 38.1,29.9 39.6,29.9 41.1,29.9 42.6,29.9 44.0,29.9 45.5,29.9 47.0,29.9 48.5,29.9 50.0,29.9 51.5,29.9 52.9,29.9 54.4,29.9 55.9,29.9 57.4,29.9 58.9,29.9 60.4,29.8 61.8,29.8 63.3,29.8 64.8,29.8 66.3,29.8 67.8,5.8 69.3,4.4 70.7,4.4 72.2,4.4 73.7,4.4 75.2,4.4 76.7,4.3 78.2,4.3 79.6,4.3 81.1,4.3 82.6,4.3 84.1,4.3 85.6,4.3 87.1,4.1 88.5,4.1 90.0,4.1 91.5,4.1 93.0,4.1 94.5,4.1 96.0,4.1 97.4,4.1 98.9,4.1 100.4,4.1 101.9,4.1 103.4,4.1 104.9,4.1 106.3,4.1 107.8,4.1 109.3,4.1 110.8,4.1 112.3,4.0 113.8,4.0 115.2,4.0 116.7,4.0 118.2,4.0 119.7,4.0 121.2,4.0 122.7,4.0 124.1,4.0 125.6,4.0 127.1,4.0 128.6,4.0 130.1,4.0 131.6,4.0 133.0,4.0 134.5,4.0 136.0,4.0" class="sk-line"/><circle cx="136.0" cy="4.0" r="2.3" class="sk-dot"/></svg></td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="audit reveal">
+    <div class="stamp" id="stamp">Audited · hourly</div>
+    <h2 class="sec">Audit trail <span class="sec-sub">the machine signs its work, unedited</span></h2>
+    <ol class="entries"><li><span class="sha">3bfd0a4</span><span class="when">2026-07-26 09:25</span><span class="msg">books update — week 2, 2026-07-26 09:25 UTC</span></li><li><span class="sha">e3e0ae2</span><span class="when">2026-07-26 08:25</span><span class="msg">books update — week 2, 2026-07-26 08:25 UTC</span></li><li><span class="sha">0d6564a</span><span class="when">2026-07-26 07:25</span><span class="msg">books update — week 2, 2026-07-26 07:25 UTC</span></li><li><span class="sha">816da22</span><span class="when">2026-07-26 06:25</span><span class="msg">books update — week 2, 2026-07-26 06:25 UTC</span></li><li><span class="sha">d000bb1</span><span class="when">2026-07-26 05:25</span><span class="msg">books update — week 2, 2026-07-26 05:25 UTC</span></li><li><span class="sha">a462ff6</span><span class="when">2026-07-26 04:25</span><span class="msg">books update — week 2, 2026-07-26 04:25 UTC</span></li></ol>
+    <a class="more" href="https://github.com/oroomi/open-books/commits/main">full history &rarr;</a>
+  </section>
+
+  <section class="enclosures reveal">
+    <h2 class="sec">Enclosures</h2>
+    <div class="clips">
+      <a class="clip c1" href="https://oroomi.github.io/open-books/video1-review.mp4">
+        <span class="ex">Exhibit A · film</span>
+        <span class="t">€2,000 and Nineteen Months of Almost</span>
+        <span class="d">the failure this whole comeback is built on</span>
+      </a>
+      <a class="clip c2" href="https://fablesofafailedfounder.substack.com">
+        <span class="ex">Exhibit B · essay</span>
+        <span class="t">Read the long version</span>
+        <span class="d">the same story, written with receipts</span>
+      </a>
+      <a class="clip c3" href="https://www.threads.com/@fablesofafailedfounder">
+        <span class="ex">The wire · follow</span>
+        <span class="t">@fablesofafailedfounder</span>
+        <span class="d">posts as it happens, failures included</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="colo reveal">
+    <div class="rule2"></div>
+    <h2 class="sec">Colophon <span class="sec-sub">how this page works</span></h2>
+    <p>Nobody types these numbers. A script on a server reads the live databases every hour — the outreach logs, the subscriber count, the AI spend meter, the essays shipped — renders this exact page, and commits it to a public Git repository. No hand-editing, no rounding up, no quietly skipping a bad day.</p>
+    <p>The commit list above is the proof: each line is the machine writing this page down, timestamped, in a repository anyone can read.</p>
+    <p class="hand foot-note">no hands were used in the making of this page.</p>
+    <div class="meta">Generated 2026-07-26 10:23 UTC &middot; built &amp; run by Dayo Omisakin &middot; Turku, Finland &middot; <a href="https://mishakingstrategies.com">Mishaking Strategies</a></div>
+  </footer>
+
+</main>
+<script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  /* ---- theme: paper by daylight, charcoal after hours ---- */
+  var btn = document.getElementById('modeToggle');
+  function setTheme(t){
+    root.setAttribute('data-theme', t);
+    btn.textContent = (t === 'dark') ? 'By daylight' : 'After hours';
+    btn.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
+    try{ localStorage.setItem('ob-theme', t); }catch(e){}
+  }
+  var stored = null;
+  try{ stored = localStorage.getItem('ob-theme'); }catch(e){}
+  setTheme(stored === 'dark' ? 'dark' : 'light');
+  btn.addEventListener('click', function(){
+    setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ---- count-up (same data contract as the original generator) ---- */
   document.querySelectorAll('[data-count]').forEach(function(el){
-    var end=parseFloat(el.getAttribute('data-count'));
-    if(!isFinite(end)){return;}
-    var dec=parseInt(el.getAttribute('data-dec')||'0',10);
-    var pre=el.getAttribute('data-pre')||'', suf=el.getAttribute('data-suf')||'';
-    function fmt(v){return pre+v.toLocaleString('en-US',
-      {minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;}
-    if(reduce||end===0){el.textContent=fmt(end);return;}
-    var dur=1000,t0=null;
-    function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1);
-      var e=1-Math.pow(1-p,3);el.textContent=fmt(end*e);
-      if(p<1){requestAnimationFrame(step);}else{el.textContent=fmt(end);}}
+    var end = parseFloat(el.getAttribute('data-count'));
+    if(!isFinite(end)){ return; }
+    var dec = parseInt(el.getAttribute('data-dec')||'0',10);
+    var pre = el.getAttribute('data-pre')||'', suf = el.getAttribute('data-suf')||'';
+    function fmt(v){ return pre + v.toLocaleString('en-US',
+      {minimumFractionDigits:dec, maximumFractionDigits:dec}) + suf; }
+    if(reduce || end === 0){ el.textContent = fmt(end); return; }
+    var dur = 1000, t0 = null;
+    function step(ts){ if(!t0) t0 = ts; var p = Math.min((ts-t0)/dur, 1);
+      var e = 1 - Math.pow(1-p, 3); el.textContent = fmt(end*e);
+      if(p < 1){ requestAnimationFrame(step); } else { el.textContent = fmt(end); } }
     requestAnimationFrame(step);
   });
+
+  /* ---- the ruled scale: €0 → €10,000, ticks every €500, red ink marks the spot ---- */
+  (function(){
+    var svg = document.getElementById('scale');
+    if(!svg) return;
+    var NS = 'http://www.w3.org/2000/svg';
+    function el(name, attrs, style){
+      var n = document.createElementNS(NS, name);
+      for(var k in attrs){ n.setAttribute(k, attrs[k]); }
+      if(style){ n.setAttribute('style', style); }
+      svg.appendChild(n); return n;
+    }
+    var y = 46;
+    el('line', {x1:0, y1:y, x2:1000, y2:y}, 'stroke:var(--ink-soft);stroke-width:1.2');
+    for(var i = 0; i <= 20; i++){
+      var x = i * 50, major = (i % 2 === 0);
+      el('line', {x1:x, y1: major ? y-8 : y-4, x2:x, y2: major ? y+8 : y+4},
+        'stroke:var(--mute);stroke-width:' + (major ? 1.2 : .8));
+      if(major){
+        var lab = (i === 0) ? '€0' : (i === 20) ? '€10,000 / mo' : '€' + (i/2).toLocaleString('en-US') + ',000';
+        var t = el('text', {x:x, y:y+24,
+          'text-anchor': i === 0 ? 'start' : (i === 20 ? 'end' : 'middle')},
+          'fill:var(--mute);font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em');
+        t.textContent = lab;
+      }
+    }
+    var pct = 0, x2 = pct * 10;
+    el('line', {x1:0, y1:y, x2:x2, y2:y}, 'stroke:var(--red);stroke-width:3;stroke-linecap:round');
+    el('circle', {cx:x2, cy:y, r:4.5}, 'fill:var(--red)');
+    var note = el('text', {x:x2 + 14, y:y - 14, transform:'rotate(-2 ' + (x2+14) + ' ' + (y-14) + ')'},
+      'fill:var(--red-ink);font-family:"Caveat",cursive;font-size:19px');
+    note.textContent = 'you are here · 0%';
+  })();
+
+  /* ---- reveal on scroll + the stamp thumps in when the audit section appears ---- */
+  var stamp = document.getElementById('stamp');
+  if(reduce || !('IntersectionObserver' in window)){
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+    if(stamp) stamp.classList.add('thump');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      en.target.classList.add('in');
+      if(en.target.classList.contains('audit') && stamp){ stamp.classList.add('thump'); }
+      io.unobserve(en.target);
+    });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 })();
-</script></body></html>
+</script>
+</body>
+</html>
